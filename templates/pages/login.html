@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование - вход в систему</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/main10.css" type="text/css" rel="stylesheet">
+<link href="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/virt_kb.css" type="text/css" rel="stylesheet">
+
+
+<link href="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/jquery.ui.touch-punch.min.js"></script>
+<link href="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/virt_kb.js"></script>
+
+<!-- Katex -->
+<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/katex.min.css">
+<script defer="defer" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/katex.min.js"></script>
+<script defer="defer" src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+
+</head>
+
+<body>
+<div id="bcontent">
+<div id="header">
+<!--
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="./img/i_01_.jpg"></td>
+		<td width="100%" background="./img/i_02_.gif">&nbsp;</td>
+		<td><img src="./img/i_03_.jpg"></td>
+	</tr>
+	</table>
+
+	<div id="header_fon">
+		<div id="header_logo"><div id="header_right"></div></div>
+	</div>
+-->
+	<div style="margin-bottom:-6px"><a href="http://dp4bz.mcko.ru/test/" tabindex="90"><img src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/logo.png" title="интернет-тестирование"></a></div>
+
+
+	<div class="subheader">
+		<br><h3><font color="#666666">Вход в систему на сервере <font style="color:#880000">dp4bz.mcko.ru</font>: <font style="color:#aa4444;font-size:14pt"></font></font></h3>
+	</div>
+
+</div> <!-- header -->
+
+<div id="content">
+
+<!-- сообщение на главной странице -->
+
+		<div class="auth" style="display:block">
+		<div class="auth2">
+		<form method="post" name="af" id="ad" action="">
+		<input type="hidden" name="action" value="DoLogin">
+		<table style="padding-left:140px;">
+		<tbody><tr><td align="left">код участника</td></tr>
+		<tr><td><input type="text" name="login" id="login" tabindex="1" autocomplete="off" style="font-size:15pt" autofocus="">
+<br><font style="opacity:0.2;font-size:10pt">в формате XXXX-YYYY</font>
+</td></tr>
+		<tr><td align="left" style="padding-top:10px">пароль</td></tr>
+		<tr><td><input type="password" name="password" id="password" tabindex="2" style="font-size:15pt" value=""></td></tr>
+		<tr><td><button type="submit" tabindex="3" style="width:160px;margin:10px;font-size:16px">войти</button></td></tr>
+		</tbody></table>
+		</form>
+		</div>
+		</div>
+
+<center style="margin:5px;padding:5px;background-color:#ffff00;color:#aa0000;display:none" id="RuAlert">! Русские символы во введённом пароле !</center>
+
+
+
+<audio id="player" controlslist="nodownload" onended="document.getElementById('PlayingMessage').style.display='none';document.getElementById('PlayButton').style.display='block'">
+  <source src="%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%B2%D1%85%D0%BE%D0%B4%20%D0%B2%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83_files/test.mp3" type="audio/mpeg">
+  <p>Ваш браузер не поддерживает HTML5 аудио!</p>
+</audio>
+
+<br>
+<center>
+<button id="PlayButton" onclick="document.getElementById('player').play();this.style.display='none';document.getElementById('PlayingMessage').style.display='block';">► Проверка звука</button>
+<font id="PlayingMessage" style="display:none;color:#aa8888;font-size:10pt">...идёт проигрывание тестового аудио...</font>
+</center>
+
+<script>
+$(document).ready(function() {
+	$('#password').on('input', function() {
+		var val = $(this).val();
+		var cyrillicPattern = /[а-яё]/i; // Регулярное выражение для поиска любых символов кириллицы
+		if (cyrillicPattern.test(val)) { $('#RuAlert').show(); } else { $('#RuAlert').hide(); }
+	});
+    $('#password').trigger('input');
+});
+</script></div> <!-- content -->
+<center style="color:#f0f0f0">версия 5</center>
+
+<br><center><font style="color:#cccccc;font-size:8pt"> Page generated in 0.001, memory usage: 415 kb</font></center></div> <!-- bcontent -->
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div></body></html>

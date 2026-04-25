@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="3_files/main7.css" type="text/css" rel="stylesheet">
+<link href="3_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="3_files/mpu.css" type="text/css" rel="stylesheet">
+
+
+<link href="3_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="3_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="3_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="3_files/jquery.ui.touch-punch.min.js"></script>
+<link href="3_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="3_files/virt_kb.js"></script>
+
+</head>
+
+<body>
+<div style="clear:both"></div>
+<div id="header">
+	<div class="subheader2x">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>
+				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
+				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
+			</td><td><p id="topline"><font>Оставшееся время - 44:46</font></p>
+		</td></tr></tbody></table>
+<form method="post" action="" onsubmit="$(window).off('beforeunload');">
+<button class="qnum" type="submit" name="n" value="">Описание</button>
+<button class="qnum yellow" type="submit" name="n" value="1">1</button>
+<button class="qnum" type="submit" name="n" value="2">2</button>
+<button class="qnum qramka" type="submit" name="n" value="3">3</button>
+<button class="qnum" type="submit" name="n" value="4">4</button>
+<button class="qnum" type="submit" name="n" value="5">5</button>
+<button class="qnum" type="submit" name="n" value="6">6</button>
+<button class="qnum" type="submit" name="n" value="7">7</button>
+<button class="qnum" type="submit" name="n" value="8">8</button>
+<button class="qnum" type="submit" name="n" value="9">9</button>
+<button class="qnum" type="submit" name="n" value="10">10.1</button>
+<button class="qnum" type="submit" name="n" value="11">10.2</button>
+<button class="qnum" type="submit" name="n" value="12">10.3</button>
+<button class="qnum" type="submit" name="n" value="999">закончить</button>
+</form>
+	</div>
+</div>
+
+<div id="reserved"></div>
+
+
+
+<script>MyLogin = 'test_28123';</script>
+
+<div id="content">
+
+<div id="QuestionTest">
+
+ <!-- answer -->
+
+<style>
+span#r1:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "по";}
+span#r1.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "по́";}
+span#r2:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ня";}
+span#r2.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ня́";}
+span#r3:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ли";}
+span#r3.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ли́";}
+span#r4:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "со";}
+span#r4.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "со́";}
+span#r5:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "сре";}
+span#r5.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "сре́";}
+span#r6:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "до";}
+span#r6.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "до́";}
+span#r7:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "то";}
+span#r7.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "то́";}
+span#r8:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "чить";}
+span#r8.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "чи́ть";}
+span#r9:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ся";}
+span#r9.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ся́";}
+span#r10:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "зна";}
+span#r10.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "зна́";}
+span#r11:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "чи";}
+span#r11.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "чи́";}
+span#r12:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "мой";}
+span#r12.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "мо́й";}
+span#r13:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "у";}
+span#r13.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "у́";}
+span#r14:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "глу";}
+span#r14.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "глу́";}
+span#r15:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "бить";}
+span#r15.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "би́ть";}  
+</style>
+<p class="qq">Поставьте <b>знак ударения</b> в следующих словах.</p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы поставить ударение, щёлкните левой кнопкой мыши по соответствующей букве слова.</i></p><br>
+<p align="center" style="text-align:center"><span class="ans" name="a0" id="r1" value="1"></span><span class="ans" name="a0" id="r2" value="2"></span><span class="ans" name="a0" id="r3" value="3"></span>, <span class="ans" name="a1" id="r4" value="1"></span><span class="ans" name="a1" id="r5" value="2"></span><span class="ans" name="a1" id="r6" value="3"></span><span class="ans" name="a1" id="r7" value="4"></span><span class="ans" name="a1" id="r8" value="5"></span><span class="ans" name="a1" id="r9" value="6"></span>, <span class="ans" name="a2" id="r10" value="1"></span><span class="ans" name="a2" id="r11" value="2"></span><span class="ans" name="a2" id="r12" value="3"></span>, <span class="ans" name="a3" id="r13" value="1"></span><span class="ans" name="a3" id="r14" value="2"></span><span class="ans" name="a3" id="r15" value="3"></span></p>
+
+</div> <!-- QuestionTest -->
+
+<div class="answer" id="b" style="display:none;width:990px;">
+<form method="post" name="AnswerForm" id="AnswerForm" action="">
+<input type="hidden" name="n" value="3" autocomplete="off" spellcheck="false">
+<input type="hidden" name="Save" value="1" autocomplete="off" spellcheck="false">
+<br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br>Ответ-3:<br><textarea name="bvalue3" id="bvalue3" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
+</form>
+</div><div id="AnswerHere"><button onclick="SetAnswerB()" style="margin-top:15px">Сохранить ответ</button></div>
+
+</div> <!-- content -->
+
+<div id="PauseDialog" title="Перерыв" style="display:none">
+<center>
+Перерыв для выполнения упражнений для глаз.
+<br>Таймер остановлен на время перерыва.
+<br>Оставшееся время отдыха:
+<br>
+<br>
+<b id="RelaxTimer">-</b>
+</center>
+</div>
+
+
+<script>
+var TIME_LEFT2, mm, ss, TimeFont, UpTimer, active, RelaxTimer, StartRelax, UpInProgress;
+
+active = 0;
+CurrentUpInterval = 10000;
+UpInProgress = 0;
+
+window.onload = function(){
+    var b1 = document.getElementById("AnswerHere");//блок перед которым ставим
+    var b2 = document.getElementById("b");//блок который передвигаем
+    b1.parentNode.insertBefore(b2, b1);
+	b2.style.display = 'none';
+}
+
+function div(val, by){ return (val - val % by) / by; }
+
+// Начать перерыв для глаз
+// !!!Внимание хакерам!!! Время на сервере считается параллельно
+function pauseTest() {
+	$.ajax({
+		type: "POST",
+		url: "up.php?PauseRequest=1",
+		dataType: "json",
+		data: "PauseRequest=1",
+		timeout: 1000,
+		error: function(){
+			console.log('error :)');
+		},
+		success: function(msg){
+			if (msg.pause=='1') {
+				active = 0; // останавливаем обновление таймера НА КЛИЕНТЕ
+
+				StartRelax = Math.floor(new Date().getTime() / 1000);
+				window.clearInterval(RelaxTimer);
+				RelaxTimer = window.setInterval( UpdateRelaxTimer, 1000);
+				UpdateRelaxTimer();
+
+				// Modal dialog:
+				$( "#PauseDialog" ).dialog(
+				{
+					width: 600,
+					modal: true,
+					resizable: false,
+					draggable: false,
+					buttons:	{ 	"Продолжить": function() { $( this ).dialog( "close" ); }			},
+					close: function(event, ui) { $( this ).dialog( "close" ); up(1); }
+				}
+				);
+
+				console.log('onPAUSE !');
+			} else console.log('no access to pause now');
+		}
+	});
+}
+
+// Динамически обновляем данные о времени с сервера
+function up(ContinueTest=0) {
+	if (UpInProgress) return;
+	UpInProgress = 1;
+	RealPing = new Date().getTime();
+	$("#ping").show();
+	$.ajax({
+		type: "POST",
+		url: "up.php",
+		dataType: "json",
+		data: "ContinueTest="+ContinueTest,
+		timeout: 1000,
+		error: function(){
+			//console.log('up_error');
+		},
+		success: function(msg){
+			RealPing = (new Date().getTime() - RealPing) / 1000;
+			//console.log('ping = '+RealPing);
+			//$("#resp").html( msg.text );
+			TimeFix2 =  msg.now - Math.floor(new Date().getTime() / 1000); // Поправка на локальный таймер, который может отличаться от точного времени
+			FINISH = msg.FINISH;
+			if (msg.pause==0) active = 1;
+			//console.log(msg);
+			$("#ping").hide();
+			UpdateTimer2();
+			if (CurrentUpInterval!=msg.UpInterval && msg.UpInterval>0) {
+				console.log('Change up interval to ' + msg.UpInterval);
+				window.clearInterval(UpTimer);
+				CurrentUpInterval = msg.UpInterval;
+				UpTimer = window.setInterval( up, CurrentUpInterval);
+			}
+			if (msg.PauseNeeded==1 && msg.pause==0) pauseTest();
+		}
+	});
+	UpInProgress = 0;
+	//console.log('ok');
+}
+
+function UpdateTimer2() {
+	if (!active) return;
+	//console.log('.');
+	TIME_LEFT2_REAL = FINISH - Math.floor(new Date().getTime() / 1000) - TimeFix2;
+	TIME_LEFT2 = Math.abs(TIME_LEFT2_REAL);
+	mm = div(TIME_LEFT2, 60);
+	ss = TIME_LEFT2 % 60;
+	if (ss<10) ss = '0'+ss;
+	if (mm<5) TimeFont = '<font color="#aa0000">'; else TimeFont = '<font>';
+	if (TIME_LEFT2_REAL>0) $("#topline").html( TimeFont + 'Оставшееся время - ' + mm + ':' + ss + '</font>' );
+	else $("#topline").html( TimeFont + '‼️ <b style="color:red">Время закончилось</b> - ' + mm + ':' + ss + '</font>' );
+	if (TIME_LEFT2_REAL<-0) { $(window).off('beforeunload'); document.location="?n=998"; }
+}
+
+function UpdateRelaxTimer() {
+	RelaxyLeftTime = 300 - (Math.floor(new Date().getTime() / 1000) - StartRelax);
+	if (RelaxyLeftTime<0) { window.clearInterval(RelaxTimer); $( "#PauseDialog" ).dialog( "close" ); }
+	mm = div(RelaxyLeftTime, 60);
+	ss = RelaxyLeftTime % 60;
+	if (ss<10) ss = '0'+ss;
+	$("#RelaxTimer").html( mm+':'+ss );
+}
+
+</script><script>
+var timer2 = window.setInterval( UpdateTimer2, 500);
+var UpTimer = window.setInterval( up, CurrentUpInterval);
+up();
+</script><script type="text/javascript" src="3_files/basic_am7.js"></script>
+
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.005, memory usage: 494 kb</font></center>
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div></body></html>
