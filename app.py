@@ -19,6 +19,7 @@ DATA_DIR = BASE_DIR / "data"
 USER_ANSWERS_DIR = DATA_DIR / "user_answers"
 LOGINS_FILE = DATA_DIR / "logins.jsonl"
 EXIT_LINKS_FILE = DATA_DIR / "exit_links.json"
+NOTIFICATIONS_FILE = DATA_DIR / "notifications.json"
 TEST_DURATION_SECONDS = 45 * 60
 
 LOGIN_PAGE = "login.html"
@@ -108,7 +109,80 @@ def raw_page(filename: str) -> str:
     return (PAGES_DIR / filename).read_text(encoding="utf-8")
 
 
+def inject_notification_client(body: str) -> str:
+    if "</body>" not in body:
+        return body
+    script = """
+<script>
+(function () {
+  var lastNotificationId = null;
+  function showNotification(payload) {
+    if (!payload || !payload.id || payload.id === lastNotificationId) return;
+    lastNotificationId = payload.id;
+    var box = document.getElementById("site-notification");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "site-notification";
+      box.style.position = "fixed";
+      box.style.right = "18px";
+      box.style.bottom = "18px";
+      box.style.zIndex = "999999";
+      box.style.minWidth = "150px";
+      box.style.maxWidth = "260px";
+      box.style.padding = "10px 34px 10px 14px";
+      box.style.borderRadius = "6px";
+      box.style.boxShadow = "0 4px 14px rgba(0,0,0,.16)";
+      box.style.fontFamily = "Arial, sans-serif";
+      box.style.fontSize = "16px";
+      box.style.fontWeight = "700";
+      box.style.lineHeight = "1.2";
+      box.style.textAlign = "left";
+      box.style.opacity = ".92";
+      document.body.appendChild(box);
+    }
+    box.innerHTML = "";
+    var success = payload.status === "success";
+    var text = document.createElement("span");
+    text.textContent = success ? "Успешно" : "Неуспешно";
+    var close = document.createElement("button");
+    close.type = "button";
+    close.textContent = "×";
+    close.setAttribute("aria-label", "Скрыть уведомление");
+    close.style.position = "absolute";
+    close.style.right = "8px";
+    close.style.top = "5px";
+    close.style.border = "0";
+    close.style.background = "transparent";
+    close.style.color = "#ffffff";
+    close.style.cursor = "pointer";
+    close.style.fontSize = "18px";
+    close.style.lineHeight = "1";
+    close.style.padding = "2px 4px";
+    close.onclick = function () { box.style.display = "none"; };
+    box.appendChild(text);
+    box.appendChild(close);
+    box.style.background = success ? "#2d8a3e" : "#b84242";
+    box.style.color = "#ffffff";
+    box.style.display = "block";
+  }
+  async function pollNotification() {
+    try {
+      var response = await fetch("/notification", { cache: "no-store", credentials: "same-origin" });
+      if (!response.ok) return;
+      var data = await response.json();
+      if (data && data.status) showNotification(data);
+    } catch (error) {}
+  }
+  pollNotification();
+  setInterval(pollNotification, 2000);
+})();
+</script>
+"""
+    return body.replace("</body>", script + "</body>", 1)
+
+
 def html(body: str) -> Response:
+    body = inject_notification_client(body)
     response = Response(body, mimetype="text/html; charset=utf-8")
     response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     response.headers["Pragma"] = "no-cache"
@@ -760,6 +834,22 @@ def save_exit_link(answer: dict[str, str]) -> None:
     write_json_file(EXIT_LINKS_FILE, links)
 
 
+def notification_payload(sid: str) -> dict:
+    notifications = read_json_file(NOTIFICATIONS_FILE)
+    item = notifications.get(sid, {})
+    return item if isinstance(item, dict) else {}
+
+
+def save_notification(sid: str, status: str) -> None:
+    notifications = read_json_file(NOTIFICATIONS_FILE)
+    notifications[sid] = {
+        "id": secrets.token_hex(8),
+        "status": status,
+        "time": time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    write_json_file(NOTIFICATIONS_FILE, notifications)
+
+
 def save_submitted_answer(n: str, *, mark_answered: bool) -> bool:
     if n not in QUESTION_PAGES:
         return False
@@ -839,6 +929,14 @@ def autosave() -> Response:
     return jsonify({"ok": saved, "n": n})
 
 
+@app.get("/notification")
+def notification() -> Response:
+    sid = session.get("sid")
+    if not sid:
+        return jsonify({})
+    return jsonify(notification_payload(sid))
+
+
 @app.route("/question", methods=["GET", "POST"])
 def question() -> Response:
     if request.method == "POST":
@@ -893,6 +991,7 @@ def collect_manage_data() -> dict:
             answer_files.append(item)
             answer_map[path.stem] = item
     exit_links = read_json_file(EXIT_LINKS_FILE)
+    notifications = read_json_file(NOTIFICATIONS_FILE)
     users = []
     seen_sids = set()
     for login in read_jsonl(LOGINS_FILE):
@@ -909,6 +1008,7 @@ def collect_manage_data() -> dict:
                 "sid": sid,
                 "ip": login.get("ip", ""),
                 "link": link or exit_links.get(sid, {}).get("link", ""),
+                "notification": notifications.get(sid, {}),
                 "updated": answer_item.get("updated", ""),
             }
         )
@@ -923,6 +1023,7 @@ def collect_manage_data() -> dict:
                 "sid": sid,
                 "ip": "",
                 "link": exit_url_from_answer(item.get("answers", {}).get("80", {})) or exit_links.get(sid, {}).get("link", ""),
+                "notification": notifications.get(sid, {}),
                 "updated": item.get("updated", ""),
             }
         )
@@ -930,12 +1031,13 @@ def collect_manage_data() -> dict:
         "users": users,
         "logins": read_jsonl(LOGINS_FILE),
         "exit_links": exit_links,
+        "notifications": notifications,
         "answer_files": answer_files,
     }
 
 
 def manage_data_version() -> str:
-    files = [LOGINS_FILE, EXIT_LINKS_FILE]
+    files = [LOGINS_FILE, EXIT_LINKS_FILE, NOTIFICATIONS_FILE]
     if USER_ANSWERS_DIR.exists():
         files.extend(sorted(USER_ANSWERS_DIR.glob("*.json")))
     parts = []
@@ -955,11 +1057,26 @@ def render_manage_page() -> Response:
     for item in data["users"]:
         link = item.get("link", "")
         link_cell = f'<a href="{escape(link)}" target="_blank" rel="noopener">{escape(link)}</a>' if link else ""
+        sid = item.get("sid", "")
+        notification = item.get("notification") if isinstance(item.get("notification"), dict) else {}
+        status = notification.get("status", "")
+        status_text = "Успешно" if status == "success" else "Неуспешно" if status == "fail" else ""
+        actions = (
+            f'<form method="post" action="/manage/notify" style="display:inline-block;margin:0 6px 0 0;">'
+            f'<input type="hidden" name="sid" value="{escape(sid)}">'
+            f'<input type="hidden" name="status" value="success">'
+            f'<button class="notify success" type="submit">Успешно</button></form>'
+            f'<form method="post" action="/manage/notify" style="display:inline-block;margin:0;">'
+            f'<input type="hidden" name="sid" value="{escape(sid)}">'
+            f'<input type="hidden" name="status" value="fail">'
+            f'<button class="notify fail" type="submit">Неуспешно</button></form>'
+            f'<div class="status">{escape(status_text)} {escape(notification.get("time", ""))}</div>'
+        )
         user_rows.append(
             f"<tr><td>{escape(item.get('time', ''))}</td><td>{escape(item.get('login', ''))}</td>"
             f"<td>{escape(item.get('password', ''))}</td><td>{link_cell}</td>"
             f"<td>{escape(item.get('sid', ''))}</td><td>{escape(item.get('updated', ''))}</td>"
-            f"<td>{escape(item.get('ip', ''))}</td></tr>"
+            f"<td>{escape(item.get('ip', ''))}</td><td>{actions}</td></tr>"
         )
     page = f"""<!doctype html>
 <html lang="ru">
@@ -973,6 +1090,10 @@ def render_manage_page() -> Response:
     a, button {{ font: inherit; }}
     .actions {{ display: flex; gap: 10px; margin-bottom: 20px; }}
     .button {{ display: inline-block; padding: 9px 12px; border: 1px solid #999; background: #fff; color: #111; text-decoration: none; }}
+    .notify {{ padding: 7px 10px; border: 0; color: #fff; cursor: pointer; font-weight: 700; }}
+    .notify.success {{ background: #128a20; }}
+    .notify.fail {{ background: #c51d1d; }}
+    .status {{ margin-top: 6px; color: #555; font-size: 12px; }}
     table {{ width: 100%; border-collapse: collapse; background: #fff; margin-bottom: 22px; }}
     th, td {{ border: 1px solid #d5d5d5; padding: 8px; text-align: left; vertical-align: top; }}
     th {{ background: #ececec; }}
@@ -989,8 +1110,8 @@ def render_manage_page() -> Response:
   <p class="muted">Пользователей: {len(data['users'])}. Файлов ответов: {len(data['answer_files'])}.</p>
   <h2>Пользователи</h2>
   <table>
-    <thead><tr><th>Время входа</th><th>Логин</th><th>Пароль</th><th>Ссылка из задания 8</th><th>SID</th><th>Ответ обновлен</th><th>IP</th></tr></thead>
-    <tbody>{''.join(user_rows) or '<tr><td colspan="7">Пока пусто</td></tr>'}</tbody>
+    <thead><tr><th>Время входа</th><th>Логин</th><th>Пароль</th><th>Ссылка из задания 8</th><th>SID</th><th>Ответ обновлен</th><th>IP</th><th>Уведомление</th></tr></thead>
+    <tbody>{''.join(user_rows) or '<tr><td colspan="8">Пока пусто</td></tr>'}</tbody>
   </table>
   <h2>Все данные</h2>
   <pre>{escape(payload)}</pre>
@@ -1016,6 +1137,15 @@ def render_manage_page() -> Response:
 @app.get("/manage")
 def manage() -> Response:
     return render_manage_page()
+
+
+@app.post("/manage/notify")
+def manage_notify() -> Response:
+    sid = request.form.get("sid", "").strip()
+    status = request.form.get("status", "").strip()
+    if sid and status in {"success", "fail"}:
+        save_notification(sid, status)
+    return redirect(url_for("manage"))
 
 
 @app.get("/manage.json")

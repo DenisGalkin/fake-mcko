@@ -1,3 +1,3 @@
-{$SITE_ADDRESS::80} {
+ng14.mcko.online {
 	reverse_proxy app:4000
 }
