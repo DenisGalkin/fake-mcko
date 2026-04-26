@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="9_files/main7.css" type="text/css" rel="stylesheet">
+<link href="9_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="9_files/mpu.css" type="text/css" rel="stylesheet">
+
+
+<link href="9_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="9_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="9_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="9_files/jquery.ui.touch-punch.min.js"></script>
+<link href="9_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="9_files/virt_kb.js"></script>
+
+</head>
+
+<body>
+<div style="clear:both"></div>
+<div id="header">
+	<div class="subheader2x">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>
+				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
+				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
+			</td><td><p id="topline"><font>Оставшееся время - 42:31</font></p>
+		</td></tr></tbody></table>
+<form method="post" action="" onsubmit="$(window).off('beforeunload');">
+<button class="qnum" type="submit" name="n" value="">Описание</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum" type="submit" name="n" value="60">6</button>
+<button class="qnum" type="submit" name="n" value="70">7</button>
+<button class="qnum" type="submit" name="n" value="80">8</button>
+<button class="qnum qramka" type="submit" name="n" value="90">9</button>
+<button class="qnum" type="submit" name="n" value="100">10</button>
+<button class="qnum" type="submit" name="n" value="999">закончить</button>
+</form>
+	</div>
+</div>
+
+<div id="reserved"></div>
+
+
+
+<script>MyLogin = 'test_32325';</script>
+
+<div id="content">
+
+<div id="QuestionTest">
+
+ <!-- answer -->
+
+
+
+
+<button onclick="$('#dialog').dialog('open');" title="Показать подсказку" style="float:right;margin:5px;"> Инструкция </button>
+<br><br>
+<table style="float:right; margin-left:20px; border:2px solid #996633; border-collapse: collapse; padding:5px;">
+  <tbody><tr>
+	<td style="border-bottom:0px;padding:0px 5px;">Подлежащее
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-top:0px;padding:0px 5px;"><img src="9_files/11_1.png" width="125" height="13">
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-bottom:0px;padding:0px 5px;">Сказуемое
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-top:0px;padding:0px 5px;"><img src="9_files/8_2.png" width="100" height="13">
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-bottom:0px;padding:0px 5px;">Определение
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-top:0px;padding:0px 5px;"><img src="9_files/11_3.png" width="125" height="13">
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-bottom:0px;padding:0px 5px;">Дополнение
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-top:0px;padding:0px 5px;"><img src="9_files/11_4.png" width="115" height="13">
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-bottom:0px;padding:0px 5px;">Обстоятельство
+	  </td>
+	</tr>
+  <tr>
+	<td style="border-top:0px;padding:0px 5px;"><img src="9_files/13_5.png" width="155" height="13">
+	  </td>
+	</tr>
+  </tbody></table>
+<p class="qq">Выполните <b>синтаксический анализ</b> предложения по образцу.</p>
+
+<br><table style="border:2px solid #996633; border-collapse: collapse; padding:5px;">
+<tbody><tr>
+<td style="padding-bottom:0px;padding-left:5px;">Образец:&nbsp;</td>
+<td style="padding-bottom:0px;">Деревья</td>
+<td style="padding-bottom:0px;">в</td>
+<td style="padding-bottom:0px;">нашем</td>
+<td style="padding-bottom:0px;">парке</td>
+<td style="padding-bottom:0px;">посадили</td>
+<td style="padding-bottom:0px;padding-right:5px;">вчера.</td>
+
+
+</tr><tr>
+</tr><tr>
+<td style="padding-top:0px;"></td>
+<td style="padding-top:0px;"><img src="9_files/7_4.png" width="80" height="13"></td>
+<td style="padding-top:0px;"><img src="9_files/1_5.png" width="13" height="13"></td>
+<td style="padding-top:0px;"><img src="9_files/5_3.png" width="60" height="13"></td>
+<td style="padding-top:0px;"><img src="9_files/5_5.png" width="55" height="13"></td>
+<td style="padding-top:0px;"><img src="9_files/8_2.png" width="90" height="13"></td>
+<td style="padding-top:0px;"><img src="9_files/5_5.png" width="55" height="13"></td>
+
+
+</tr><tr>
+</tr></tbody></table><br>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы
+ указать синтаксическую роль слова, щёлкните по нему левой кнопкой мыши 
+несколько раз, выбрав соответствующее подчёркивание.</i></p>
+<br><table>
+<tbody><tr>
+<td width="35px">&nbsp;</td>
+<td style="padding-bottom:0px;" onclick="zam('1')">Вся</td>
+<td style="padding-bottom:0px;" onclick="zam('2')">природа,</td>
+<td style="padding-bottom:0px;" onclick="zam('3')">понемногу</td>
+<td style="padding-bottom:0px;" onclick="zam('3')">успокаиваясь,</td>
+<td style="padding-bottom:0px;" onclick="zam('4')">засыпала</td>
+<td style="padding-bottom:0px;" onclick="zam('6')">в</td>
+<td style="padding-bottom:0px;" onclick="zam('5')">торжественном</td>
+<td style="padding-bottom:0px;" onclick="zam('6')">величии.</td>
+
+</tr><tr>
+</tr><tr>
+<td width="35px">&nbsp;</td>
+<td style="padding-top:0px;" onclick="zam('1')"><img id="r1" src="9_files/4_0.png" width="32" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('2')"><img id="r2" src="9_files/7_0.png" width="80" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('3')"><img id="r3" src="9_files/8_0.png" width="95" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('3')"><img id="r3p" src="9_files/11_0.png" width="125" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('4')"><img id="r4" src="9_files/8_0.png" width="90" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('6')"><img id="r6" src="9_files/1_0.png" width="13" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('5')"><img id="r5" src="9_files/13_0.png" width="145" height="13"></td>
+<td style="padding-top:0px;" onclick="zam('6')"><img id="r6p" src="9_files/7_0.png" width="80" height="13"></td>
+
+</tr><tr>
+</tr></tbody></table>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы дать характеристику предложения, выберите соответствующие параметры.</i></p><br>
+<table>
+<tbody><tr>
+<th colspan="3">ХАРАКТЕРИСТИКИ ПРЕДЛОЖЕНИЯ</th>
+</tr>
+<tr>
+<td><label for="1r1"><div class="answer"><input type="radio" class="ans" id="1r1" name="a1" value="1">&nbsp;повествовательное</div></label></td>
+<td><label for="1r2"><div class="answer"><input type="radio" class="ans" id="1r2" name="a1" value="2">&nbsp;побудительное</div></label></td>
+<td><label for="1r3"><div class="answer"><input type="radio" class="ans" id="1r3" name="a1" value="3">&nbsp;вопросительное</div></label></td></tr>
+
+<tr><td><label for="2r1"><div class="answer"><input type="radio" class="ans" id="2r1" name="a2" value="1">&nbsp;восклицательное</div></label></td>
+<td><label for="2r2"><div class="answer"><input type="radio" class="ans" id="2r2" name="a2" value="2">&nbsp;невосклицательное</div></label></td></tr>
+
+<tr><td><label for="3r1"><div class="answer"><input type="radio" class="ans" id="3r1" name="a3" value="1">&nbsp;простое</div></label></td>
+<td><label for="3r2"><div class="answer"><input type="radio" class="ans" id="3r2" name="a3" value="2">&nbsp;сложное</div></label></td></tr>
+
+<tr><td><label for="4r1"><div class="answer"><input type="radio" class="ans" id="4r1" name="a4" value="1">&nbsp;односоставное</div></label></td>
+<td><label for="4r2"><div class="answer"><input type="radio" class="ans" id="4r2" name="a4" value="2">&nbsp;двусоставное</div></label></td></tr>
+
+<tr><td><label for="5r1"><div class="answer"><input type="radio" class="ans" id="5r1" name="a5" value="1">&nbsp;распространённое</div></label></td>
+<td><label for="5r2"><div class="answer"><input type="radio" class="ans" id="5r2" name="a5" value="2">&nbsp;нераспространённое</div></label></td></tr>
+
+<tr><td><label for="6r1"><div class="answer"><input type="radio" class="ans" id="6r1" name="a6" value="1">&nbsp;полное</div></label></td>
+<td><label for="6r2"><div class="answer"><input type="radio" class="ans" id="6r2" name="a6" value="2">&nbsp;неполное</div></label></td></tr>
+
+<tr>
+<td><label for="7r1"><div class="answer"><input type="radio" class="ans" id="7r1" name="a7" value="1">&nbsp;осложнено<br>причастным оборотом</div></label></td>
+<td><label for="7r2"><div class="answer"><input type="radio" class="ans" id="7r2" name="a7" value="2">&nbsp;осложнено<br>деепричастным оборотом</div></label></td></tr></tbody></table>
+<br>
+
+<p class="qq">Установите соответствие между выделенными в&nbsp;примерах словами и&nbsp;двумя лингвистическими категориями. 
+Определите синтаксическую роль выделенных слов. Укажите, какой частью речи эти слова являются в&nbsp;предложении.<br>
+К&nbsp;каждой позиции из первого столбца подберите соответствующие позиции из выпадающих списков.
+</p><br>
+<center><table class="tbl">
+	<tbody><tr><th>ПРИМЕР</th><th>СИНТАКСИЧЕСКАЯ РОЛЬ</th><th>ЧАСТЬ РЕЧИ</th></tr>
+	<tr>
+		<td><b class="xbold">природа</b> засыпала</td>
+		<td><center><select id="a8">
+           <option value="" selected="selected">- выберите ответ -</option>
+           <option value="1">подлежащее</option>
+		   <option value="2">простое глагольное сказуемое</option>
+           <option value="3">составное глагольное сказуемое</option>
+		   <option value="4">составное именное сказуемое</option>
+		   <option value="5">несогласованное определение</option>
+           <option value="6">согласованное определение</option>
+		   <option value="7">прямое дополнение</option>
+		   <option value="8">косвенное дополнение</option>
+		   <option value="9">обстоятельство образа действия</option>
+           <option value="10">обстоятельство времени</option>
+		   <option value="11">обстоятельство меры и степени</option>
+		   <option value="12">обстоятельство места</option>
+		   <option value="13">обстоятельство причины</option>
+           <option value="14">обстоятельство условия</option>
+		   <option value="15">обстоятельство уступки </option>
+		   <option value="16">обстоятельство цели </option>
+           
+           </select></center></td>
+		<td><center><select class="select" id="a9">
+           <option value="" selected="selected">- выберите ответ -</option>
+           <option value="1">имя существительное</option>
+           <option value="2">глагол</option>
+		   <option value="3">имя прилагательное</option>
+		   <option value="4">местоимение</option>
+		   <option value="5">числительное</option>
+		   <option value="6">наречие</option>
+           
+        </select></center></td></tr>
+  <tr>
+		<td>природа <b class="xbold">засыпала</b></td>
+		<td><center><select class="select" id="a10">
+           <option value="" selected="selected">- выберите ответ -</option>
+		   <option value="1">подлежащее</option>
+		   <option value="2">простое глагольное сказуемое</option>
+           <option value="3">составное глагольное сказуемое</option>
+		   <option value="4">составное именное сказуемое</option>
+		   <option value="5">несогласованное определение</option>
+           <option value="6">согласованное определение</option>
+		   <option value="7">прямое дополнение</option>
+		   <option value="8">косвенное дополнение</option>
+		   <option value="9">обстоятельство образа действия</option>
+           <option value="10">обстоятельство времени</option>
+		   <option value="11">обстоятельство меры и степени</option>
+		   <option value="12">обстоятельство места</option>
+		   <option value="13">обстоятельство причины</option>
+           <option value="14">обстоятельство условия</option>
+		   <option value="15">обстоятельство уступки </option>
+		   <option value="16">обстоятельство цели </option>
+           
+        </select></center></td>
+				<td><center><select class="select" id="a11">
+           <option value="" selected="selected">- выберите ответ -</option>
+           <option value="1">имя существительное</option>
+           <option value="2">глагол</option>
+		   <option value="3">имя прилагательное</option>
+		   <option value="4">местоимение</option>
+		   <option value="5">числительное</option>
+		   <option value="6">наречие</option>
+        </select></center></td></tr>
+  <tr>
+		<td><b class="xbold">вся</b> природа</td>
+		<td><center><select class="select" id="a12">
+           <option value="" selected="selected">- выберите ответ -</option>
+		   <option value="1">подлежащее</option>
+		   <option value="2">простое глагольное сказуемое</option>
+           <option value="3">составное глагольное сказуемое</option>
+		   <option value="4">составное именное сказуемое</option>
+		   <option value="5">несогласованное определение</option>
+           <option value="6">согласованное определение</option>
+		   <option value="7">прямое дополнение</option>
+		   <option value="8">косвенное дополнение</option>
+		   <option value="9">обстоятельство образа действия</option>
+           <option value="10">обстоятельство времени</option>
+		   <option value="11">обстоятельство меры и степени</option>
+		   <option value="12">обстоятельство места</option>
+		   <option value="13">обстоятельство причины</option>
+           <option value="14">обстоятельство условия</option>
+		   <option value="15">обстоятельство уступки </option>
+		   <option value="16">обстоятельство цели </option>
+          
+        </select></center></td>
+				<td><center><select class="select" id="a13">
+           <option value="" selected="selected">- выберите ответ -</option>
+           <option value="1">имя существительное</option>
+           <option value="2">глагол</option>
+		   <option value="3">имя прилагательное</option>
+		   <option value="4">местоимение</option>
+		   <option value="5">числительное</option>
+		   <option value="6">наречие</option>
+        </select></center></td></tr>
+				<tr>
+		<td>засыпала в <b class="xbold">величии</b></td>
+		<td><center><select class="select" id="a14">
+           <option value="" selected="selected">- выберите ответ -</option>
+		   <option value="1">подлежащее</option>
+		   <option value="2">простое глагольное сказуемое</option>
+           <option value="3">составное глагольное сказуемое</option>
+		   <option value="4">составное именное сказуемое</option>
+		   <option value="5">несогласованное определение</option>
+           <option value="6">согласованное определение</option>
+		   <option value="7">прямое дополнение</option>
+		   <option value="8">косвенное дополнение</option>
+		   <option value="9">обстоятельство образа действия</option>
+           <option value="10">обстоятельство времени</option>
+		   <option value="11">обстоятельство меры и степени</option>
+		   <option value="12">обстоятельство места</option>
+		   <option value="13">обстоятельство причины</option>
+           <option value="14">обстоятельство условия</option>
+		   <option value="15">обстоятельство уступки </option>
+		   <option value="16">обстоятельство цели </option>
+           
+        </select></center></td>
+				<td><center><select class="select" id="a15">
+           <option value="" selected="selected">- выберите ответ -</option>
+           <option value="1">имя существительное</option>
+           <option value="2">глагол</option>
+		   <option value="3">имя прилагательное</option>
+		   <option value="4">местоимение</option>
+		   <option value="5">числительное</option>
+		   <option value="6">наречие</option>
+        </select></center></td></tr>
+  </tbody></table></center>
+	<br><button onclick="Store()">Сохранить ответы</button>
+	<script>
+var m1 = 0;
+var m2 = 0;
+var m3 = 0;
+var m4 = 0;
+var m5 = 0;
+var m6 = 0;
+
+
+function zam(x){
+	var xs = "r" + x;
+	var xm;
+	if (x==1){m1=m1+1;if (m1==6){m1=0;} xm = m1;}
+	if (x==2){m2=m2+1;if (m2==6){m2=0;} xm = m2;}
+	if (x==3){m3=m3+1;if (m3==6){m3=0;} xm = m3;}
+	if (x==4){m4=m4+1;if (m4==6){m4=0;} xm = m4;}
+	if (x==5){m5=m5+1;if (m5==6){m5=0;} xm = m5;}
+	if (x==6){m6=m6+1;if (m6==6){m6=0;} xm = m6;}
+	
+	if (x==1){document.getElementById(xs).src="/test/questions/9203469/80680142.files/4_"+ xm +".png";}
+    if (x==2){document.getElementById(xs).src="/test/questions/9203469/80680142.files/7_"+ xm +".png";}
+	if ((x==4)){document.getElementById(xs).src="/test/questions/9203469/80680142.files/8_"+ xm +".png";}
+    if (x==5){document.getElementById(xs).src="/test/questions/9203469/80680142.files/13_"+ xm +".png";}
+		if (x==3){document.getElementById("r3p").src="/test/questions/9203469/80680142.files/11_"+ xm +".png";
+	document.getElementById(xs).src="/test/questions/9203469/80680142.files/8_"+ xm +".png";}
+    if (x==6){document.getElementById("r6p").src="/test/questions/9203469/80680142.files/7_"+ xm +".png";
+	document.getElementById(xs).src="/test/questions/9203469/80680142.files/1_"+ xm +".png";}
+}
+function Store() {
+	var sres = "";
+	sres = sres + m1 + m2 + m3 + m4 + m5 + m6;
+	$('#bvalue0').val(sres);
+	$('#bvalue1').val( $('input[name=a1]:checked').val() );
+	$('#bvalue2').val( $('input[name=a2]:checked').val() );
+	$('#bvalue3').val( $('input[name=a3]:checked').val() );
+	$('#bvalue4').val( $('input[name=a4]:checked').val() );
+	$('#bvalue5').val( $('input[name=a5]:checked').val() );
+    $('#bvalue6').val( $('input[name=a6]:checked').val() );
+	$('#bvalue7').val( $('input[name=a7]:checked').val() );
+	
+	$('#bvalue8').val( $('#a8').val() );
+	$('#bvalue9').val( $('#a9').val() );
+	$('#bvalue10').val( $('#a10').val() );
+	$('#bvalue11').val( $('#a11').val() );
+	$('#bvalue12').val( $('#a12').val() );
+	$('#bvalue13').val( $('#a13').val() );
+	$('#bvalue14').val( $('#a14').val() );
+	$('#bvalue15').val( $('#a15').val() );
+	SetAnswerB();
+	return;
+}
+$('input[name=a1][value="'+$('#bvalue1').val()+'"]').attr("checked", true);
+$('input[name=a2][value="'+$('#bvalue2').val()+'"]').attr("checked", true);
+$('input[name=a3][value="'+$('#bvalue3').val()+'"]').attr("checked", true);
+$('input[name=a4][value="'+$('#bvalue4').val()+'"]').attr("checked", true);
+$('input[name=a5][value="'+$('#bvalue5').val()+'"]').attr("checked", true);
+$('input[name=a6][value="'+$('#bvalue6').val()+'"]').attr("checked", true);
+$('input[name=a7][value="'+$('#bvalue7').val()+'"]').attr("checked", true);	  
+
+$('#a8').val( $('#bvalue8').val() );
+$('#a9').val( $('#bvalue9').val() );
+$('#a10').val( $('#bvalue10').val() );
+$('#a11').val( $('#bvalue11').val() );
+$('#a12').val( $('#bvalue12').val() );
+$('#a13').val( $('#bvalue13').val() );
+$('#a14').val( $('#bvalue14').val() );
+$('#a15').val( $('#bvalue15').val() );
+if ($('#bvalue0').val()!='') {
+    var s = $('#bvalue0').val();
+    for (let i=1; i<=6; i++) {
+        var xm = s[i-1];
+	    if (i==1){document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/4_"+xm+".png";}
+	    if (i==2){document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/7_"+xm+".png";}
+	    if ((i==4)){document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/8_"+xm+".png";}
+	    if (i==5){document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/13_"+xm+".png";}
+			if (i==3){document.getElementById("r3p").src="/test/questions/9203469/80680142.files/11_"+xm+".png";
+				  document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/8_"+xm+".png";}
+	    if (i==6){document.getElementById("r6p").src="/test/questions/9203469/80680142.files/7_"+xm+".png";
+				  document.getElementById("r" + i).src="/test/questions/9203469/80680142.files/1_"+xm+".png";}
+
+	}
+	m1 = parseInt($('#bvalue0').val()[0]);
+	m2 = parseInt($('#bvalue0').val()[1]);
+	m3 = parseInt($('#bvalue0').val()[2]);
+	m4 = parseInt($('#bvalue0').val()[3]);
+	m5 = parseInt($('#bvalue0').val()[4]);
+	m6 = parseInt($('#bvalue0').val()[5]);
+
+}
+</script>
+<script>
+$(document).ready(function() {
+    $("#dialog").dialog({ autoOpen: false, buttons: {Ok: function() {$( this ).dialog( "close" );}}, width: 810	});
+});
+</script>
+
+</div> <!-- QuestionTest -->
+
+<div class="answer" id="b" style="display:none;width:990px;">
+<form method="post" name="AnswerForm" id="AnswerForm" action="">
+<input type="hidden" name="n" value="90">
+<input type="hidden" name="Save" value="1">
+<br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-3:<br><textarea name="bvalue3" id="bvalue3" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-4:<br><textarea name="bvalue4" id="bvalue4" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-5:<br><textarea name="bvalue5" id="bvalue5" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-6:<br><textarea name="bvalue6" id="bvalue6" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-7:<br><textarea name="bvalue7" id="bvalue7" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-8:<br><textarea name="bvalue8" id="bvalue8" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-9:<br><textarea name="bvalue9" id="bvalue9" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-10:<br><textarea name="bvalue10" id="bvalue10" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-11:<br><textarea name="bvalue11" id="bvalue11" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-12:<br><textarea name="bvalue12" id="bvalue12" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-13:<br><textarea name="bvalue13" id="bvalue13" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-14:<br><textarea name="bvalue14" id="bvalue14" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-15:<br><textarea name="bvalue15" id="bvalue15" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
+</form>
+</div><div id="AnswerHere"></div>
+
+</div> <!-- content -->
+
+<div id="PauseDialog" title="Перерыв" style="display:none">
+<center>
+Перерыв для выполнения упражнений для глаз.
+<br>Таймер остановлен на время перерыва.
+<br>Оставшееся время отдыха:
+<br>
+<br>
+<b id="RelaxTimer">-</b>
+</center>
+</div>
+
+
+<script>
+var TIME_LEFT2, mm, ss, TimeFont, UpTimer, active, RelaxTimer, StartRelax, UpInProgress;
+
+active = 0;
+CurrentUpInterval = 10000;
+UpInProgress = 0;
+
+window.onload = function(){
+    var b1 = document.getElementById("AnswerHere");//блок перед которым ставим
+    var b2 = document.getElementById("b");//блок который передвигаем
+    b1.parentNode.insertBefore(b2, b1);
+	b2.style.display = 'none';
+}
+
+function div(val, by){ return (val - val % by) / by; }
+
+// Начать перерыв для глаз
+// !!!Внимание хакерам!!! Время на сервере считается параллельно
+function pauseTest() {
+	$.ajax({
+		type: "POST",
+		url: "up.php?PauseRequest=1",
+		dataType: "json",
+		data: "PauseRequest=1",
+		timeout: 1000,
+		error: function(){
+			console.log('error :)');
+		},
+		success: function(msg){
+			if (msg.pause=='1') {
+				active = 0; // останавливаем обновление таймера НА КЛИЕНТЕ
+
+				StartRelax = Math.floor(new Date().getTime() / 1000);
+				window.clearInterval(RelaxTimer);
+				RelaxTimer = window.setInterval( UpdateRelaxTimer, 1000);
+				UpdateRelaxTimer();
+
+				// Modal dialog:
+				$( "#PauseDialog" ).dialog(
+				{
+					width: 600,
+					modal: true,
+					resizable: false,
+					draggable: false,
+					buttons:	{ 	"Продолжить": function() { $( this ).dialog( "close" ); }			},
+					close: function(event, ui) { $( this ).dialog( "close" ); up(1); }
+				}
+				);
+
+				console.log('onPAUSE !');
+			} else console.log('no access to pause now');
+		}
+	});
+}
+
+// Динамически обновляем данные о времени с сервера
+function up(ContinueTest=0) {
+	if (UpInProgress) return;
+	UpInProgress = 1;
+	RealPing = new Date().getTime();
+	$("#ping").show();
+	$.ajax({
+		type: "POST",
+		url: "up.php",
+		dataType: "json",
+		data: "ContinueTest="+ContinueTest,
+		timeout: 1000,
+		error: function(){
+			//console.log('up_error');
+		},
+		success: function(msg){
+			RealPing = (new Date().getTime() - RealPing) / 1000;
+			//console.log('ping = '+RealPing);
+			//$("#resp").html( msg.text );
+			TimeFix2 =  msg.now - Math.floor(new Date().getTime() / 1000); // Поправка на локальный таймер, который может отличаться от точного времени
+			FINISH = msg.FINISH;
+			if (msg.pause==0) active = 1;
+			//console.log(msg);
+			$("#ping").hide();
+			UpdateTimer2();
+			if (CurrentUpInterval!=msg.UpInterval && msg.UpInterval>0) {
+				console.log('Change up interval to ' + msg.UpInterval);
+				window.clearInterval(UpTimer);
+				CurrentUpInterval = msg.UpInterval;
+				UpTimer = window.setInterval( up, CurrentUpInterval);
+			}
+			if (msg.PauseNeeded==1 && msg.pause==0) pauseTest();
+		}
+	});
+	UpInProgress = 0;
+	//console.log('ok');
+}
+
+function UpdateTimer2() {
+	if (!active) return;
+	//console.log('.');
+	TIME_LEFT2_REAL = FINISH - Math.floor(new Date().getTime() / 1000) - TimeFix2;
+	TIME_LEFT2 = Math.abs(TIME_LEFT2_REAL);
+	mm = div(TIME_LEFT2, 60);
+	ss = TIME_LEFT2 % 60;
+	if (ss<10) ss = '0'+ss;
+	if (mm<5) TimeFont = '<font color="#aa0000">'; else TimeFont = '<font>';
+	if (TIME_LEFT2_REAL>0) $("#topline").html( TimeFont + 'Оставшееся время - ' + mm + ':' + ss + '</font>' );
+	else $("#topline").html( TimeFont + '‼️ <b style="color:red">Время закончилось</b> - ' + mm + ':' + ss + '</font>' );
+	if (TIME_LEFT2_REAL<-0) { $(window).off('beforeunload'); document.location="?n=998"; }
+}
+
+function UpdateRelaxTimer() {
+	RelaxyLeftTime = 300 - (Math.floor(new Date().getTime() / 1000) - StartRelax);
+	if (RelaxyLeftTime<0) { window.clearInterval(RelaxTimer); $( "#PauseDialog" ).dialog( "close" ); }
+	mm = div(RelaxyLeftTime, 60);
+	ss = RelaxyLeftTime % 60;
+	if (ss<10) ss = '0'+ss;
+	$("#RelaxTimer").html( mm+':'+ss );
+}
+
+</script><script>
+var timer2 = window.setInterval( UpdateTimer2, 500);
+var UpTimer = window.setInterval( up, CurrentUpInterval);
+up();
+</script>
+
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.006, memory usage: 536 kb</font></center>
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div><div style="display: none; position: absolute;" tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable ui-resizable" aria-describedby="dialog" aria-labelledby="ui-id-1"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Инструкция</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close</button></div><div id="dialog" style="" class="ui-dialog-content ui-widget-content">
+<div class="zad">
+<center><img width="780px" src="9_files/demo_9.gif"></center>
+</div>
+</div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-corner-all ui-widget">Ok</button></div></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div></div></body></html>

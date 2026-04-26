@@ -6,25 +6,25 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="3_files/main7.css" type="text/css" rel="stylesheet">
-<link href="3_files/virt_kb.css" type="text/css" rel="stylesheet">
-<link href="3_files/mpu.css" type="text/css" rel="stylesheet">
+<link href="8_files/main7.css" type="text/css" rel="stylesheet">
+<link href="8_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="8_files/mpu.css" type="text/css" rel="stylesheet">
 
 
-<link href="3_files/kim.css" type="text/css" rel="stylesheet">
+<link href="8_files/kim.css" type="text/css" rel="stylesheet">
 <!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
 
 <!-- JQuery -->
-<script type="text/javascript" src="3_files/jquery.min.js"></script>
+<script type="text/javascript" src="8_files/jquery.min.js"></script>
 
 <!-- JQueryUI -->
-<script type="text/javascript" src="3_files/jquery-ui.min.js"></script>
-<script type="text/javascript" src="3_files/jquery.ui.touch-punch.min.js"></script>
-<link href="3_files/jquery-ui.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="8_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="8_files/jquery.ui.touch-punch.min.js"></script>
+<link href="8_files/jquery-ui.css" type="text/css" rel="stylesheet">
 
 <!-- Virtual keyboard plugin -->
-<script type="text/javascript" src="3_files/virt_kb.js"></script>
+<script type="text/javascript" src="8_files/virt_kb.js"></script>
 
 </head>
 
@@ -37,22 +37,21 @@
 			<td>
 				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
 				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
-			</td><td><p id="topline"><font>Оставшееся время - 44:46</font></p>
+			</td><td><p id="topline"><font>Оставшееся время - 42:37</font></p>
 		</td></tr></tbody></table>
 <form method="post" action="" onsubmit="$(window).off('beforeunload');">
 <button class="qnum" type="submit" name="n" value="">Описание</button>
-<button class="qnum yellow" type="submit" name="n" value="1">1</button>
-<button class="qnum" type="submit" name="n" value="2">2</button>
-<button class="qnum qramka" type="submit" name="n" value="3">3</button>
-<button class="qnum" type="submit" name="n" value="4">4</button>
-<button class="qnum" type="submit" name="n" value="5">5</button>
-<button class="qnum" type="submit" name="n" value="6">6</button>
-<button class="qnum" type="submit" name="n" value="7">7</button>
-<button class="qnum" type="submit" name="n" value="8">8</button>
-<button class="qnum" type="submit" name="n" value="9">9</button>
-<button class="qnum" type="submit" name="n" value="10">10.1</button>
-<button class="qnum" type="submit" name="n" value="11">10.2</button>
-<button class="qnum" type="submit" name="n" value="12">10.3</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum" type="submit" name="n" value="60">6</button>
+<button class="qnum" type="submit" name="n" value="70">7</button>
+<button class="qnum qramka" type="submit" name="n" value="80">8</button>
+<button class="qnum" type="submit" name="n" value="90">9</button>
+<button class="qnum" type="submit" name="n" value="100">10</button>
 <button class="qnum" type="submit" name="n" value="999">закончить</button>
 </form>
 	</div>
@@ -62,7 +61,7 @@
 
 
 
-<script>MyLogin = 'test_28123';</script>
+<script>MyLogin = 'test_32325';</script>
 
 <div id="content">
 
@@ -71,51 +70,69 @@
  <!-- answer -->
 
 <style>
-span#r1:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "по";}
-span#r1.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "по́";}
-span#r2:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ня";}
-span#r2.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ня́";}
-span#r3:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ли";}
-span#r3.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ли́";}
-span#r4:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "со";}
-span#r4.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "со́";}
-span#r5:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "сре";}
-span#r5.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "сре́";}
-span#r6:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "до";}
-span#r6.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "до́";}
-span#r7:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "то";}
-span#r7.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "то́";}
-span#r8:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "чить";}
-span#r8.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "чи́ть";}
-span#r9:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "ся";}
-span#r9.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "ся́";}
-span#r10:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "зна";}
-span#r10.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "зна́";}
-span#r11:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "чи";}
-span#r11.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "чи́";}
-span#r12:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "мой";}
-span#r12.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "мо́й";}
-span#r13:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "у";}
-span#r13.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "у́";}
-span#r14:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "глу";}
-span#r14.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "глу́";}
-span#r15:before { font-weight:bold; cursor:pointer; background: #eee; font-size:17pt; content: "бить";}
-span#r15.marked:before { font-weight:bold; background-color:#eee; font-size:17pt; content: "би́ть";}  
+span.ans {  border-bottom:1px dotted #000088; cursor:pointer; }
+span.ans.marked { border-bottom:1px solid #880000; color:#880000; font-weight:bold; background-color:#ffff88; }
 </style>
-<p class="qq">Поставьте <b>знак ударения</b> в следующих словах.</p>
-<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы поставить ударение, щёлкните левой кнопкой мыши по соответствующей букве слова.</i></p><br>
-<p align="center" style="text-align:center"><span class="ans" name="a0" id="r1" value="1"></span><span class="ans" name="a0" id="r2" value="2"></span><span class="ans" name="a0" id="r3" value="3"></span>, <span class="ans" name="a1" id="r4" value="1"></span><span class="ans" name="a1" id="r5" value="2"></span><span class="ans" name="a1" id="r6" value="3"></span><span class="ans" name="a1" id="r7" value="4"></span><span class="ans" name="a1" id="r8" value="5"></span><span class="ans" name="a1" id="r9" value="6"></span>, <span class="ans" name="a2" id="r10" value="1"></span><span class="ans" name="a2" id="r11" value="2"></span><span class="ans" name="a2" id="r12" value="3"></span>, <span class="ans" name="a3" id="r13" value="1"></span><span class="ans" name="a3" id="r14" value="2"></span><span class="ans" name="a3" id="r15" value="3"></span></p>
+<p class="qq">Прочитайте предложения (знаки препинания не расставлены).</p>
+<p class="qq"><b>1.</b> Найдите предложение с <b>вводным словом</b>, выделите вводное слово.</p>
 
-</div> <!-- QuestionTest -->
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы отметить слово, щёлкните по нему левой кнопкой мыши, после чего оно выделится цветом.
+</i></p><br>
+
+
+
+<p><span class="ans" name="a0" value="1">Cолнце</span> 
+<nobr><span class="ans" name="a0" value="2">светило</span></nobr> 
+<span class="ans" name="a0" value="3">ярко</span> 
+<span class="ans" name="a0" value="4">несмотря</span> 
+<span class="ans" name="a0" value="5">на надвигающуюся</span> 
+<nobr><span class="ans" name="a0" value="6">грозу</span>.</nobr> 
+<span class="ans" name="a0" value="7">Деревья</span> 
+<nobr><span class="ans" name="a0" value="8">казалось</span></nobr> 
+<nobr><span class="ans" name="a0" value="9">замерли</span></nobr> 
+<nobr><span class="ans" name="a0" value="10">в&nbsp;предчувствии</span> 
+<span class="ans" name="a0" value="11">дождя</span></nobr> 
+<nobr><span class="ans" name="a0" value="12">только</span></nobr> 
+<nobr><span class="ans" name="a0" value="13">старая</span></nobr> 
+<nobr><span class="ans" name="a0" value="14">ива</span></nobr> 
+<span class="ans" name="a0" value="15">на берегу</span> 
+<span class="ans" name="a0" value="16">реки</span> 
+<nobr><span class="ans" name="a0" value="17">тихонько</span></nobr> 
+<nobr><span class="ans" name="a0" value="18">покачивала</span></nobr> 
+<nobr><span class="ans" name="a0" value="19">своими</span></nobr> 
+<span class="ans" name="a0" value="20">ветвями</span>. 
+<nobr><span class="ans" name="a0" value="21">Это</span> 
+<span class="ans" name="a0" value="22">была</span></nobr>
+<nobr><span class="ans" name="a0" value="23">просто</span></nobr>
+<span class="ans" name="a0" value="24">игра</span> 
+<nobr><span class="ans" name="a0" value="25">ветра</span></nobr> 
+<span class="ans" name="a0" value="26">но</span> 
+<span class="ans" name="a0" value="27">мне</span> 
+<span class="ans" name="a0" value="28">почему-то</span> 
+<nobr><span class="ans" name="a0" value="29">казалось</span></nobr> 
+<span class="ans" name="a0" value="30">что</span> 
+<nobr><span class="ans" name="a0" value="31">ива</span></nobr> 
+<nobr><span class="ans" name="a0" value="32">была</span></nobr> 
+<span class="ans" name="a0" value="33">мудрее</span> 
+<span class="ans" name="a0" value="34">всех</span> 
+<span class="ans" name="a0" value="35">нас</span>
+<span class="ans" name="a0" value="36">вместе</span>
+<nobr><span class="ans" name="a0" value="37">взятых</span>.</nobr>
+</p>
+
+
+
+<p class="qq"><b>2.</b> Подберите к вводному слову синоним, запишите его.</p>
+<div class="answer_flex"><p class="MsoNormal">Синонимом вводного слова является слово <span style="background:#e0f0f0; padding:10px 5px 7px 5px"><input type="text" id="a1" style="width:200px;" autocomplete="off" spellcheck="false"></span>.
+
+</p></div> <!-- QuestionTest -->
 
 <div class="answer" id="b" style="display:none;width:990px;">
 <form method="post" name="AnswerForm" id="AnswerForm" action="">
-<input type="hidden" name="n" value="3" autocomplete="off" spellcheck="false">
+<input type="hidden" name="n" value="80" autocomplete="off" spellcheck="false">
 <input type="hidden" name="Save" value="1" autocomplete="off" spellcheck="false">
 <br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
 <br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
-<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
-<br>Ответ-3:<br><textarea name="bvalue3" id="bvalue3" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
 <br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
 </form>
 </div><div id="AnswerHere"><button onclick="SetAnswerB()" style="margin-top:15px">Сохранить ответ</button></div>
@@ -254,9 +271,9 @@ function UpdateRelaxTimer() {
 var timer2 = window.setInterval( UpdateTimer2, 500);
 var UpTimer = window.setInterval( up, CurrentUpInterval);
 up();
-</script><script type="text/javascript" src="3_files/basic_am7.js"></script>
+</script><script type="text/javascript" src="8_files/basic_am7.js"></script>
 
-<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.005, memory usage: 494 kb</font></center>
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.004, memory usage: 488 kb</font></center>
 <script>
 function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
 
@@ -284,4 +301,4 @@ function FormAnswer(n) {
 </script>
 
 
-<div id="kb" class="kb"></div></body></html>
+</div><div id="kb" class="kb"></div></body></html>

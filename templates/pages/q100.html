@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="10_files/main7.css" type="text/css" rel="stylesheet">
+<link href="10_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="10_files/mpu.css" type="text/css" rel="stylesheet">
+
+
+<link href="10_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="10_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="10_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="10_files/jquery.ui.touch-punch.min.js"></script>
+<link href="10_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="10_files/virt_kb.js"></script>
+
+</head>
+
+<body>
+<div style="clear:both"></div>
+<div id="header">
+	<div class="subheader2x">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>
+				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
+				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
+			</td><td><p id="topline"><font>Оставшееся время - 42:27</font></p>
+		</td></tr></tbody></table>
+<form method="post" action="" onsubmit="$(window).off('beforeunload');">
+<button class="qnum" type="submit" name="n" value="">Описание</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum" type="submit" name="n" value="60">6</button>
+<button class="qnum" type="submit" name="n" value="70">7</button>
+<button class="qnum" type="submit" name="n" value="80">8</button>
+<button class="qnum" type="submit" name="n" value="90">9</button>
+<button class="qnum qramka" type="submit" name="n" value="100">10</button>
+<button class="qnum" type="submit" name="n" value="999">закончить</button>
+</form>
+	</div>
+</div>
+
+<div id="reserved"></div>
+
+
+
+<script>MyLogin = 'test_32325';</script>
+
+<div id="content">
+
+<div id="QuestionTest">
+
+ <!-- answer -->
+
+<!--<style>
+span.ans {  border-bottom:1px dotted #000088; cursor:pointer; }
+span.ans.marked { border-bottom:1px solid #880000; color:#880000; font-weight:bold; background-color:#ffff88; }
+button {background-color:#ffffff;}
+</style>
+<p class=qq>Укажите <b>два</b> предложения, в которых допущена(-ы) ошибка(-и).<br>
+Исправьте ошибку.</p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы исправить ошибку, щёлкните левой кнопкой мыши по соответствующей части предложения (по слову или словам). В&nbsp;появившемся окошке запишите исправление выделенной части предложения.</i></p>
+<table class=tbl>
+<tr>
+<td><label for="r1" onclick="fp(1)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r1" value="1"></div></label></td>
+<td width="620"><div id="b1">Город Тобольск привлекает внимание как необычной красотой, так и&nbsp;богатой историей.</div>
+<div id="c1" hidden><span class="ans" name="m5" value="1">Город</span> 
+<span class="ans" name="m5" value="2">Тобольск</span> 
+<span class="ans" name="m5" value="3">привлекает</span> 
+<span class="ans" name="m5" value="4">как</span> 
+<span class="ans" name="m5" value="5">необычной</span> 
+<span class="ans" name="m5" value="6">красотой</span>, 
+<span class="ans" name="m5" value="7">так</span> 
+<span class="ans" name="m5" value="8">и</span>&nbsp;<span class="ans" name="m5" value="9">богатой</span> 
+<span class="ans" name="m5" value="10">историей</span>.</div></td>
+<td class="answer" id="d1" width="310"> <input type="text" id="a1" style="width:300px" autocomplete="off" hidden> </td>
+</tr>
+<tr>
+<td><label for="r2" onclick="fp(2)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r2" value="2"></div></label></td>
+<td><div id="b2">Восхищаясь красотой вечернего Тобольска, наш разговор был оживлённым.</div>
+<div id="c2" hidden><span class="ans" name="m6" value="1">Восхищаясь</span> 
+<span class="ans" name="m6" value="2">красотой</span> 
+<span class="ans" name="m6" value="3">вечернего</span> 
+<span class="ans" name="m6" value="4">Тобольска</span>, 
+<span class="ans" name="m6" value="5">наш</span> 
+<span class="ans" name="m6" value="6">разговор</span> 
+<span class="ans" name="m6" value="7">был</span> 
+<span class="ans" name="m6" value="8">оживлённым</span>.</div></td>
+<td class="answer" id="d2"> <input type="text" id="a2" style="width:300px" autocomplete="off" hidden> </td>
+</tr>
+<tr>
+<td><label for="r3" onclick="fp(3)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r3" value="3"></div></label></td>
+<td><div id="b3">Тобольский кремль, считающийся одним из самых красивых в&nbsp;России, расположен на вершине холма.</div>
+<div id="c3" hidden><span class="ans" name="m7" value="1">Тобольский</span> 
+<span class="ans" name="m7" value="2">кремль</span>, 
+<span class="ans" name="m7" value="3">считающийся</span> 
+<span class="ans" name="m7" value="4">одним</span> 
+<span class="ans" name="m7" value="5">из</span> 
+<span class="ans" name="m7" value="6">самых</span> 
+<span class="ans" name="m7" value="7">красивых</span> 
+<span class="ans" name="m7" value="8">в</span>&nbsp;<span class="ans" name="m7" value="9">России</span>, 
+<span class="ans" name="m7" value="10">расположен</span> 
+<span class="ans" name="m7" value="11">на</span>
+<span class="ans" name="m7" value="12">вершине</span> 
+<span class="ans" name="m7" value="13">холма</span>.</div></td>
+<td class="answer" id="d3"> <input type="text" id="a3" style="width:300px" autocomplete="off" hidden> </td>
+</tr>
+<tr>
+<td><label for="r4" onclick="fp(4)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r4" value="4"></div></label></td>
+<td><div id="b4">Тобольск вырастил для России не только химика Д. Менделеева, а также поэта-сказочника П. Ершова – автора бессмертного «Конька-Горбунка».</div>
+<div id="c4" hidden><span class="ans" name="m8" value="1">Тобольск</span>
+<span class="ans" name="m8" value="2">вырастил</span> 
+<span class="ans" name="m8" value="3">для</span> 
+<span class="ans" name="m8" value="4">России</span> 
+<span class="ans" name="m8" value="5">не</span> 
+<span class="ans" name="m8" value="6">только</span> 
+<span class="ans" name="m8" value="7">химика</span> 
+<span class="ans" name="m8" value="8">Д.&nbsp;Менделеева</span>, 
+<span class="ans" name="m8" value="9">а</span>&nbsp;<span class="ans" name="m8" value="10">также</span> 
+<span class="ans" name="m8" value="11">поэта-сказочника</span> 
+<span class="ans" name="m8" value="12">П.&nbsp;Ершова</span>&nbsp;– 
+<span class="ans" name="m8" value="13">автора</span> 
+<span class="ans" name="m8" value="14">бессмертного</span> 
+<span class="ans" name="m8" value="15">«Конька-Горбунка»</span>.</div></td>
+<td class="answer" id="d4"> <input type="text" id="a4" style="width:300px" autocomplete="off" hidden> </td>
+</tr>
+</table>
+<table class=tbl>
+<tr>
+<td><label for="r1" onclick="fp(1)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r1" value="1"></div></label></td>
+<td width="930"><div id="b1">Город Тобольск привлекает внимание как необычной красотой, так и&nbsp;богатой историей.</div>
+<div id="c1" hidden><span class="ans" name="m5" value="1">Город</span> 
+<span class="ans" name="m5" value="2">Тобольск</span> 
+<span class="ans" name="m5" value="3">привлекает</span> 
+<span class="ans" name="m5" value="4">как</span> 
+<span class="ans" name="m5" value="5">необычной</span> 
+<span class="ans" name="m5" value="6">красотой</span>, 
+<span class="ans" name="m5" value="7">так</span> 
+<span class="ans" name="m5" value="8">и</span>&nbsp;<span class="ans" name="m5" value="9">богатой</span> 
+<span class="ans" name="m5" value="10">историей</span>.</div></td>
+</tr>
+<tr>
+<td><label for="r2" onclick="fp(2)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r2" value="2"></div></label></td>
+<td><div id="b2">Восхищаясь красотой вечернего Тобольска, наш разговор был оживлённым.</div>
+<div id="c2" hidden><span class="ans" name="m6" value="1">Восхищаясь</span> 
+<span class="ans" name="m6" value="2">красотой</span> 
+<span class="ans" name="m6" value="3">вечернего</span> 
+<span class="ans" name="m6" value="4">Тобольска</span>, 
+<span class="ans" name="m6" value="5">наш</span> 
+<span class="ans" name="m6" value="6">разговор</span> 
+<span class="ans" name="m6" value="7">был</span> 
+<span class="ans" name="m6" value="8">оживлённым</span>.</div></td>
+</tr>
+<tr>
+<td><label for="r3" onclick="fp(3)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r3" value="3"></div></label></td>
+<td><div id="b3">Тобольский кремль, считающийся одним из самых красивых в&nbsp;России, расположен на вершине холма.</div>
+<div id="c3" hidden><span class="ans" name="m7" value="1">Тобольский</span> 
+<span class="ans" name="m7" value="2">кремль</span>, 
+<span class="ans" name="m7" value="3">считающийся</span> 
+<span class="ans" name="m7" value="4">одним</span> 
+<span class="ans" name="m7" value="5">из</span> 
+<span class="ans" name="m7" value="6">самых</span> 
+<span class="ans" name="m7" value="7">красивых</span> 
+<span class="ans" name="m7" value="8">в</span>&nbsp;<span class="ans" name="m7" value="9">России</span>, 
+<span class="ans" name="m7" value="10">расположен</span> 
+<span class="ans" name="m7" value="11">на</span>
+<span class="ans" name="m7" value="12">вершине</span> 
+<span class="ans" name="m7" value="13">холма</span>.</div></td>
+</tr>
+<tr>
+<td><label for="r4" onclick="fp(4)"><div width="100%" height="100%"><input type="checkbox" class="ans" name="m0" id="r4" value="4"></div></label></td>
+<td><div id="b4">Тобольск вырастил для России не только химика Д. Менделеева, а также поэта-сказочника П.&nbsp;Ершова – автора бессмертного «Конька-Горбунка».</div>
+<div id="c4" hidden><span class="ans" name="m8" value="1">Тобольск</span>
+<span class="ans" name="m8" value="2">вырастил</span> 
+<span class="ans" name="m8" value="3">для</span> 
+<span class="ans" name="m8" value="4">России</span> 
+<span class="ans" name="m8" value="5">не</span> 
+<span class="ans" name="m8" value="6">только</span> 
+<span class="ans" name="m8" value="7">химика</span> 
+<span class="ans" name="m8" value="8">Д.&nbsp;Менделеева</span>, 
+<span class="ans" name="m8" value="9">а</span>&nbsp;<span class="ans" name="m8" value="10">также</span> 
+<span class="ans" name="m8" value="11">поэта-сказочника</span> 
+<span class="ans" name="m8" value="12">П.&nbsp;Ершова</span>&nbsp;– 
+<span class="ans" name="m8" value="13">автора</span> 
+<span class="ans" name="m8" value="14">бессмертного</span> 
+<span class="ans" name="m8" value="15">«Конька-Горбунка»</span>.</div></td>
+</tr>
+</table>
+<table class=tbl>
+<tr id="d1"><td class="answer" width="950"><button contenteditable="true" id="1a1" width="5">Город</button>
+<button contenteditable="true" id="2a1">Тобольск</button>
+<button contenteditable="true" id="3a1">привлекает</button>
+<button contenteditable="true" id="4a1">как </button>
+<button contenteditable="true" id="5a1">необычной </button>
+<button contenteditable="true" id="6a1">красотой</button>, 
+<button contenteditable="true" id="7a1">так </button>
+<button contenteditable="true" id="8a1">и</button>&nbsp;<button contenteditable="true" id="9a1">богатой</button>
+<button contenteditable="true" id="10a1">историей</button>.</td>
+<tr id="d2"><td class="answer">s</td>
+<tr id="d3"><td class="answer">s</td>
+<tr id="d4"><td class="answer">s</td>
+</tr>
+</table>
+<script>
+var answer1=["","","","","","","",""];
+function fp(num) {
+  if ($('#bvalue0').val().includes(num)){
+	document.getElementById('a'+num).hidden=false;document.getElementById('b'+num).hidden=true;document.getElementById('c'+num).hidden=false;
+	$('#bvalue'+num).val(answer1[num-1]);$('#bvalue'+(num+4)).val(answer1[num+3]);$('#a'+num).val(answer1[num-1]);
+	}
+	else {
+	document.getElementById('a'+num).hidden=true;document.getElementById('b'+num).hidden=false;document.getElementById('c'+num).hidden=true;
+	answer1[num-1]=$('#bvalue'+num).val();$('#bvalue'+num).val("-");answer1[num+3]=$('#bvalue'+(num+4)).val();$('#bvalue'+(num+4)).val("-");
+	}
+}
+if ($('#bvalue0').val()==''){$('#bvalue1').val("-");$('#bvalue2').val("-");$('#bvalue3').val("-");$('#bvalue4').val("-");}
+if ($('#bvalue0').val()=='-'){$('#bvalue1').val("-");$('#bvalue2').val("-");$('#bvalue3').val("-");$('#bvalue4').val("-");$('#bvalue0').val("");}
+if (($('#bvalue0').val()!='')||($('#bvalue0').val()!='-')){
+for (let i = 1; i < 5; i++){
+  if ($('#bvalue0').val().includes(i)){document.getElementById('a'+i).hidden=false;document.getElementById('b'+i).hidden=true;document.getElementById('c'+i).hidden=false;}
+	}
+}
+</script>-->
+
+<style>
+input[type="radio"] {
+  display: none;
+}
+label {
+  color: #000;
+  cursor: default;
+  font-weight: normal;
+  line-height: 30px;
+  padding: 1px 0;
+  vertical-align: middle;
+	border-bottom:1px dotted #000088; cursor:pointer;
+}
+
+input:checked + label {
+	text-decoration: line-through;
+}
+
+input:disabled + label {
+  background: #eee;
+  color: #aaa;
+}
+input.ap {
+  min-width:50px;
+  max-width:500px;
+	border: none;
+	background: transparent;
+	color: black;
+}
+input.ap1 {
+  min-width:50px;
+  max-width:500px;
+	cursor: default;
+	background-color:#eee;
+}
+.td_radio {
+		position: relative; text-align:left; cursor:pointer;
+	}
+	.td_radio div {
+		position: absolute;top: 7px;
+	}
+	.td_radio table {
+		position: absolute;opacity: 0;bottom: 0;right: 0; width: 100%; height: 100%;
+	}
+.dynamic-sizer {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  top: -9999px;
+  left: -9999px;
+}
+</style>
+
+
+<!--
+<p class=qq>Укажите <b>два</b> предложения, в которых допущены грамматические ошибки.<br>
+Исправьте ошибки.</p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы исправить ошибку в предложении, щёлкните левой кнопкой мыши по соответствующей части предложения (по слову или словам). В&nbsp;появившемся окошке запишите исправление выделенной части предложения.</i></p>
+<table style="border-collapse:collapse;padding:10px;">
+<tr>
+<td class="td_radio" onclick="fp(0)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;" width="21"><div width="100%" height="100%"><input type="checkbox" id="r0" value="1"></div><table><tr><td></td></tr></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b0">Город Тобольск привлекает внимание как необычной красотой, так и&nbsp;богатой историей.</div>
+<div id="c0" hidden>
+<input type="radio" id="p00" name="p0" value="0"><label for="p00" onclick="changestr(0,0)">Город Тобольск привлекает внимание</label> 
+<input type="radio" id="p01" name="p0" value="1"><label for="p01" onclick="changestr(0,1)">как необычной красотой</label>, 
+<input type="radio" id="p02" name="p0" value="2"><label for="p02" onclick="changestr(0,2)">так и</label> 
+<input type="radio" id="p03" name="p0" value="3"><label for="p03" onclick="changestr(0,3)">богатой историей</label>.</div></td>
+</tr>
+<tr class="answer" id="d0" hidden><td colspan="2"> <input type="text" class="ap" id="a00" oninput="difs(this)" autocomplete="off" disabled> <nobr><input type="text" class="ap" id="a01" oninput="difs(this)" autocomplete="off" disabled>,</nobr> <input type="text" class="ap" id="a02" oninput="difs(this)" autocomplete="off" disabled> <nobr><input type="text" class="ap" id="a03" oninput="difs(this)" autocomplete="off" disabled>.</nobr></td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(1)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r1" value="2"></div><table><tr><td></td></tr></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b1">Восхищаясь красотой вечернего Тобольска, наш разговор был оживлённым.</div>
+<div id="c1" hidden>
+<input type="radio" id="p10" name="p1" value="0"><label for="p10" onclick="changestr(1,0)">Восхищаясь красотой вечернего Тобольска</label>, 
+<input type="radio" id="p11" name="p1" value="1"><label for="p11" onclick="changestr(1,1)">наш разговор был оживлённым</label>.</div></td>
+</tr>
+<tr class="answer" id="d1" hidden><td colspan="2"> <input type="text" class="ap" id="a10" oninput="difs(this)" autocomplete="off" disabled>, <nobr><input type="text" class="ap" id="a11" oninput="difs(this)" autocomplete="off" disabled>.</nobr></td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(2)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r2" value="3"></div><table><tr><td></td></tr></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b2">Тобольский кремль, считающийся одним из самых красивых в&nbsp;России, расположен на вершине холма.</div>
+<div id="c2" hidden>
+<input type="radio" id="p20" name="p2" value="0"><label for="p20" onclick="changestr(2,0)">Тобольский кремль</label>, 
+<input type="radio" id="p21" name="p2" value="1"><label for="p21" onclick="changestr(2,1)">считающийся одним из самых красивых в&nbsp;России</label>, 
+<input type="radio" id="p22" name="p2" value="2"><label for="p22" onclick="changestr(2,2)">расположен на вершине холма</label>.</div></td>
+</tr>
+<tr class="answer" id="d2" hidden><td colspan="2"> <input type="text" class="ap" id="a20" oninput="difs(this)" autocomplete="off" disabled>, <nobr><input type="text" class="ap" id="a21" oninput="difs(this)" autocomplete="off" disabled>,</nobr> <nobr><input type="text" class="ap" id="a22" oninput="difs(this)" autocomplete="off" disabled>.</nobr> </td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(3)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r3" value="4"></div><table><tr><td>&nbsp;</td></tr></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b3">Тобольск вырастил для России не только химика Д. Менделеева, а также поэта-сказочника П.&nbsp;Ершова&nbsp;– автора бессмертного «Конька-Горбунка».</div>
+<div id="c3" hidden>
+<input type="radio" id="p30" name="p3" value="0"><label for="p30" onclick="changestr(3,0)">Тобольск вырастил для России</label>
+<input type="radio" id="p31" name="p3" value="1"><label for="p31" onclick="changestr(3,1)">не только химика Д. Менделеева</label>, 
+<input type="radio" id="p32" name="p3" value="2"><label for="p32" onclick="changestr(3,2)">а также</label> 
+<input type="radio" id="p33" name="p3" value="3"><label for="p33" onclick="changestr(3,3)">поэта-сказочника П.&nbsp;Ершова</label>&nbsp;– 
+<input type="radio" id="p34" name="p3" value="4"><label for="p34" onclick="changestr(3,4)">автора бессмертного «Конька-Горбунка»</label>.</div></td>
+</tr>
+<tr class="answer" id="d3" hidden><td colspan="2"> <input type="text" class="ap" id="a30" oninput="difs(this)" autocomplete="off" disabled> <input type="text" class="ap" id="a31" oninput="difs(this)" autocomplete="off" disabled>, <input type="text" class="ap" id="a32" oninput="difs(this)" autocomplete="off" disabled> <nobr><input type="text" class="ap" id="a33" oninput="difs(this)" autocomplete="off" disabled>&nbsp;–</nobr> <nobr><input type="text" class="ap" id="a34" oninput="difs(this)" autocomplete="off" disabled>.</nobr> </td>
+</tr>
+</table>
+<br><button onclick="Store()">Сохранить ответы</button>
+<script>
+var answer=[0,0,0,0];
+var prn=[4,2,3,5];
+var pr=[["Город Тобольск привлекает внимание","как необычной красотой","так и","богатой историей"],["Восхищаясь красотой вечернего Тобольска","наш разговор был оживлённым"],["Тобольский кремль","считающийся одним из самых красивых в России","расположен на вершине холма"],["Тобольск вырастил для России","не только химика Д. Менделеева","а также","поэта-сказочника П. Ершова","автора бессмертного «Конька-Горбунка»"]];
+var pr1=[["","","",""],["",""],["","",""],["","","","",""]];
+var pr2=[["377","245","50","174"],["427","312"],["191","488","307"],["305","327","76","285","407"]];
+function fp(num) {
+  if (answer[num] == 0){if ((answer[0] + answer[1] + answer[2] + answer[3]) < 2){
+    answer[num] = 1;
+		$("input[id=r"+num+"]").attr("checked", true);
+    document.getElementById('d'+num).hidden=false;document.getElementById('b'+num).hidden=true;document.getElementById('c'+num).hidden=false;}
+  }
+	else {
+    answer[num] = 0;
+		$("input[id=r"+num+"]").attr("checked", false);
+    document.getElementById('d'+num).hidden=true;document.getElementById('b'+num).hidden=false;document.getElementById('c'+num).hidden=true;
+  }
+}
+function changestr(st,num) {
+  for (let i = 0; i < prn[st]; i++){
+	  $('#a'+st+i).val(pr[st][i]);
+		document.getElementById('a'+st+i).className="ap";
+		document.getElementById('a'+st+i).disabled=true;
+		difs1(document.getElementById('a'+st+i));
+	}
+	$('#a'+st+num).val(pr1[st][num]);
+	document.getElementById('a'+st+num).className="ap1";
+	document.getElementById('a'+st+num).disabled=false;
+	difs1(document.getElementById('a'+st+num));
+	document.getElementById('a'+st+num).focus();
+	
+}
+
+function difs(element) {
+  element.style.width = ((element.value.length + 1) * 12) + 'px';
+	pr1[element.id[1]][element.id[2]] = element.value;
+	//element.style.width = element.scrollWidth + 'px';
+}
+function difs1(element) {
+  if (element.className == "ap"){element.style.width = pr2[element.id[1]][element.id[2]] + 'px';}
+  else {element.style.width = ((element.value.length + 1) * 12) + 'px';}
+	//element.style.width = element.scrollWidth + 'px';
+}
+function Store() {
+  $('#bvalue4').val("");
+	for (let i = 0; i < 4; i++){
+		$('#bvalue4').val($('#bvalue4').val()+answer[i]);
+	  if (answer[i]==1){
+	    $('#bvalue'+i).val($('input[name=p'+i+']:checked').val());
+		  $('#bvalue'+(i+5)).val($('#a'+i+$('input[name=p'+i+']:checked').val()).val());
+		  for (let j = 0; j < prn[i]; j++){
+	      $('#bvalue'+i).val($('#bvalue'+i).val()+"/"+$('#a'+i+j).val());
+	    }
+		} else {$('#bvalue'+i).val("n");$('#bvalue'+(i+5)).val("n");}
+	}
+	if ($('#bvalue4').val()=="0000"){$('#bvalue0').val("");$('#bvalue1').val("");$('#bvalue2').val("");$('#bvalue3').val("");$('#bvalue4').val("");$('#bvalue5').val("");$('#bvalue6').val("");$('#bvalue7').val("");$('#bvalue8').val("");}
+  SetAnswerB();
+	return;
+}
+for (let i = 0; i < 4; i++){
+	  answer[i] = $('#bvalue4').val()[i] - 0;
+		for (let j = 0; j < prn[i]; j++){
+	    $('#a'+i+j).val(pr[i][j]);
+		  difs1(document.getElementById('a'+i+j));
+	  }
+	  if (answer[i]==1){
+		  $("input[id=r"+i+"]").attr("checked", true);
+      document.getElementById('d'+i).hidden=false;document.getElementById('b'+i).hidden=true;document.getElementById('c'+i).hidden=false;
+		  if ($('#bvalue'+i).val()[0]!="/"){
+			    pr1[i][$('#bvalue'+i).val()[0]] = $('#bvalue'+(i+5)).val();
+				  $('#a'+i+$('#bvalue'+i).val()[0]).val($('#bvalue'+(i+5)).val());
+					document.getElementById('a'+i+$('#bvalue'+i).val()[0]).className="ap1";
+	        document.getElementById('a'+i+$('#bvalue'+i).val()[0]).disabled=false;
+					difs1(document.getElementById('a'+i+$('#bvalue'+i).val()[0]));
+				  $('input[name=p'+i+'][value="'+$('#bvalue'+i).val()[0]+'"]').attr("checked", true);
+				}
+		} else {
+		  answer[i]=0;
+		}
+	}
+</script>
+-->
+
+<p class="qq">Укажите <b>два</b> предложения, в которых допущены грамматические ошибки.<br>
+Исправьте ошибки.</p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы
+ исправить ошибку в предложении, щёлкните левой кнопкой мыши по 
+соответствующей части предложения (по слову или словам). 
+В&nbsp;появившемся окошке запишите исправление выделенной части 
+предложения.</i></p>
+<table style="border-collapse:collapse;padding:10px;">
+<tbody><tr>
+<td class="td_radio" onclick="fp(0)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;" width="21"><div width="100%" height="100%"><input type="checkbox" id="r0" value="1"></div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b0">Город Тобольск привлекает внимание как необычной красотой, так и&nbsp;богатой историей.</div>
+<div id="c0" hidden="">
+<input type="radio" id="p00" name="p0" value="0"><label for="p00" onclick="changestr(0,0)">Город Тобольск привлекает внимание</label> 
+<input type="radio" id="p01" name="p0" value="1"><label for="p01" onclick="changestr(0,1)">как необычной красотой</label>, 
+<input type="radio" id="p02" name="p0" value="2"><label for="p02" onclick="changestr(0,2)">так и</label> 
+<input type="radio" id="p03" name="p0" value="3"><label for="p03" onclick="changestr(0,3)">богатой историей</label>.</div></td>
+</tr>
+<tr class="answer" id="d0" hidden=""><td colspan="2"> <input type="text" class="ap dynamic" id="a00" autocomplete="off" disabled="disabled" style="width: 398px;" value="Город Тобольск привлекает внимание"> <nobr><input type="text" class="ap dynamic" id="a01" autocomplete="off" disabled="disabled" style="width: 261px;" value="как необычной красотой">,</nobr> <input type="text" class="ap dynamic" id="a02" autocomplete="off" disabled="disabled" style="width: 54px;" value="так и"> <nobr><input type="text" class="ap dynamic" id="a03" autocomplete="off" disabled="disabled" style="width: 187px;" value="богатой историей">.</nobr></td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(1)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r1" value="2"></div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b1">Восхищаясь красотой вечернего Тобольска, наш разговор был оживлённым.</div>
+<div id="c1" hidden="">
+<input type="radio" id="p10" name="p1" value="0"><label for="p10" onclick="changestr(1,0)">Восхищаясь красотой вечернего Тобольска</label>, 
+<input type="radio" id="p11" name="p1" value="1"><label for="p11" onclick="changestr(1,1)">наш разговор был оживлённым</label>.</div></td>
+</tr>
+<tr class="answer" id="d1" hidden=""><td colspan="2"> <input type="text" class="ap dynamic" id="a10" autocomplete="off" disabled="disabled" style="width: 453px;" value="Восхищаясь красотой вечернего Тобольска">, <nobr><input type="text" class="ap dynamic" id="a11" autocomplete="off" disabled="disabled" style="width: 334px;" value="наш разговор был оживлённым">.</nobr></td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(2)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r2" value="3"></div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b2">Тобольский кремль, считающийся одним из самых красивых в&nbsp;России, расположен на вершине холма.</div>
+<div id="c2" hidden="">
+<input type="radio" id="p20" name="p2" value="0"><label for="p20" onclick="changestr(2,0)">Тобольский кремль</label>, 
+<input type="radio" id="p21" name="p2" value="1"><label for="p21" onclick="changestr(2,1)">считающийся одним из самых красивых в&nbsp;России</label>, 
+<input type="radio" id="p22" name="p2" value="2"><label for="p22" onclick="changestr(2,2)">расположен на вершине холма</label>.</div></td>
+</tr>
+<tr class="answer" id="d2" hidden=""><td colspan="2"> <input type="text" class="ap dynamic" id="a20" autocomplete="off" disabled="disabled" style="width: 205px;" value="Тобольский кремль">, <nobr><input type="text" class="ap dynamic" id="a21" autocomplete="off" disabled="disabled" style="width: 518px;" value="считающийся одним из самых красивых в России">,</nobr> <nobr><input type="text" class="ap dynamic" id="a22" autocomplete="off" disabled="disabled" style="width: 327px;" value="расположен на вершине холма">.</nobr> </td>
+</tr>
+<tr>
+<td class="td_radio" onclick="fp(3)" style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div width="100%" height="100%"><input type="checkbox" id="r3" value="4"></div><table><tbody><tr><td>&nbsp;</td></tr></tbody></table></td>
+<td style="background:radial-gradient(farthest-corner at 10% 20%, white, #DCECF8); padding:6px; margin:6pt 0pt;border: 1px solid #999999;"><div id="b3">Тобольск
+ вырастил для России не только химика Д. Менделеева, а также 
+поэта-сказочника П.&nbsp;Ершова&nbsp;– автора бессмертного 
+«Конька-Горбунка».</div>
+<div id="c3" hidden="">
+<input type="radio" id="p30" name="p3" value="0"><label for="p30" onclick="changestr(3,0)">Тобольск вырастил для России</label>
+<input type="radio" id="p31" name="p3" value="1"><label for="p31" onclick="changestr(3,1)">не только химика Д. Менделеева</label>, 
+<input type="radio" id="p32" name="p3" value="2"><label for="p32" onclick="changestr(3,2)">а также</label> 
+<input type="radio" id="p33" name="p3" value="3"><label for="p33" onclick="changestr(3,3)">поэта-сказочника П.&nbsp;Ершова</label>&nbsp;– 
+<input type="radio" id="p34" name="p3" value="4"><label for="p34" onclick="changestr(3,4)">автора бессмертного «Конька-Горбунка»</label>.</div></td>
+</tr>
+<tr class="answer" id="d3" hidden=""><td colspan="2"> <input type="text" class="ap dynamic" id="a30" autocomplete="off" disabled="disabled" style="width: 320px;" value="Тобольск вырастил для России"> <input type="text" class="ap dynamic" id="a31" autocomplete="off" disabled="disabled" style="width: 344px;" value="не только химика Д. Менделеева">, <input type="text" class="ap dynamic" id="a32" autocomplete="off" disabled="disabled" style="width: 79px;" value="а также"> <nobr><input type="text" class="ap dynamic" id="a33" autocomplete="off" disabled="disabled" style="width: 297px;" value="поэта-сказочника П. Ершова">&nbsp;–</nobr> <nobr><input type="text" class="ap dynamic" id="a34" autocomplete="off" disabled="disabled" style="width: 424px;" value="автора бессмертного «Конька-Горбунка»">.</nobr> </td>
+</tr>
+</tbody></table>
+<br><button onclick="Store()">Сохранить ответы</button>
+<script>
+	
+// Страница полностью загружена и DOM-дерево построено
+$(function () {
+
+	// $input'у динамически задаётся ширина в зависимости от размера содержимого
+	// для вычисления ширины используется виртуальеый невидимый span-двойник у чёрта на куличках (см style)
+  function updateWidth($input, $sizer) {
+    const input = $input[0];
+    const style = window.getComputedStyle(input);
+
+    // копируем стили текста
+    $sizer.css({
+      font: style.font,
+      letterSpacing: style.letterSpacing,
+      textTransform: style.textTransform
+    });
+
+    // значение или placeholder
+    const value = $input.val() || $input.attr('placeholder') || ' ';
+
+    // задаём span-двойнику то же содержимое, что и у input
+    $sizer.text(value);
+
+    // и прописываем input'у ширину, как у span-двойника + небольшой запас
+    $input.width($sizer.outerWidth() + 2);
+  }
+
+  $('.dynamic').each(function () {
+    const $input = $(this);
+
+    // создаём индивидуальный sizer для каждого input
+    const $sizer = $('<span class="dynamic-sizer"></span>').appendTo('body');
+
+    // обработчик ввода
+    $input.on('input', function () {
+      updateWidth($input, $sizer);
+			pr1[this.id[1]][this.id[2]] = this.value;
+    });
+		
+    $input.on('ch', function () {
+      updateWidth($input, $sizer);
+    });
+		
+    // инициализация
+    updateWidth($input, $sizer);
+  });
+
+});
+
+
+
+
+var answer=[0,0,0,0];
+var prn=[4,2,3,5];
+var pr=[["Город Тобольск привлекает внимание","как необычной красотой","так и","богатой историей"],["Восхищаясь красотой вечернего Тобольска","наш разговор был оживлённым"],["Тобольский кремль","считающийся одним из самых красивых в России","расположен на вершине холма"],["Тобольск вырастил для России","не только химика Д. Менделеева","а также","поэта-сказочника П. Ершова","автора бессмертного «Конька-Горбунка»"]];
+var pr1=[["","","",""],["",""],["","",""],["","","","",""]];
+function fp(num) {
+  if (answer[num] == 0){if ((answer[0] + answer[1] + answer[2] + answer[3]) < 2){
+    answer[num] = 1;
+		$("input[id=r"+num+"]").attr("checked", true);
+    document.getElementById('d'+num).hidden=false;document.getElementById('b'+num).hidden=true;document.getElementById('c'+num).hidden=false;}
+  }
+	else {
+    answer[num] = 0;
+		$("input[id=r"+num+"]").attr("checked", false);
+    document.getElementById('d'+num).hidden=true;document.getElementById('b'+num).hidden=false;document.getElementById('c'+num).hidden=true;
+  }
+}
+function changestr(st,num) {
+  for (let i = 0; i < prn[st]; i++){
+	  $('#a'+st+i).val(pr[st][i]);
+		document.getElementById('a'+st+i).className="ap dynamic";
+		document.getElementById('a'+st+i).disabled=true;
+		$('#a'+st+i).trigger("ch");
+//		difs1(document.getElementById('a'+st+i));
+	}
+	$('#a'+st+num).val(pr1[st][num]);
+	document.getElementById('a'+st+num).className="ap1 dynamic";
+	document.getElementById('a'+st+num).disabled=false;
+//	difs1(document.getElementById('a'+st+num));
+	document.getElementById('a'+st+num).focus();
+	$('#a'+st+num).trigger("ch");
+}
+
+function Store() {
+  $('#bvalue4').val("");
+	for (let i = 0; i < 4; i++){
+		$('#bvalue4').val($('#bvalue4').val()+answer[i]);
+	  if (answer[i]==1){
+	    $('#bvalue'+i).val($('input[name=p'+i+']:checked').val());
+		  $('#bvalue'+(i+5)).val($('#a'+i+$('input[name=p'+i+']:checked').val()).val());
+		  for (let j = 0; j < prn[i]; j++){
+	      $('#bvalue'+i).val($('#bvalue'+i).val()+"/"+$('#a'+i+j).val());
+	    }
+		} else {$('#bvalue'+i).val("n");$('#bvalue'+(i+5)).val("n");}
+	}
+	if ($('#bvalue4').val()=="0000"){$('#bvalue0').val("");$('#bvalue1').val("");$('#bvalue2').val("");$('#bvalue3').val("");$('#bvalue4').val("");$('#bvalue5').val("");$('#bvalue6').val("");$('#bvalue7').val("");$('#bvalue8').val("");}
+  SetAnswerB();
+	return;
+}
+for (let i = 0; i < 4; i++){
+	  answer[i] = $('#bvalue4').val()[i] - 0;
+		for (let j = 0; j < prn[i]; j++){
+	    $('#a'+i+j).val(pr[i][j]);
+//		  difs1(document.getElementById('a'+i+j));
+	  }
+	  if (answer[i]==1){
+		  $("input[id=r"+i+"]").attr("checked", true);
+      document.getElementById('d'+i).hidden=false;document.getElementById('b'+i).hidden=true;document.getElementById('c'+i).hidden=false;
+		  if ($('#bvalue'+i).val()[0]!="/"){
+			    pr1[i][$('#bvalue'+i).val()[0]] = $('#bvalue'+(i+5)).val();
+				  $('#a'+i+$('#bvalue'+i).val()[0]).val($('#bvalue'+(i+5)).val());
+					document.getElementById('a'+i+$('#bvalue'+i).val()[0]).className="ap1 dynamic";
+	        document.getElementById('a'+i+$('#bvalue'+i).val()[0]).disabled=false;
+//          $('#a'+i+$('#bvalue'+i).val()[0]).trigger("ch");
+				  $('input[name=p'+i+'][value="'+$('#bvalue'+i).val()[0]+'"]').attr("checked", true);
+				}
+		} else {
+		  answer[i]=0;
+		}
+	}
+</script>
+
+</div> <!-- QuestionTest -->
+
+<div class="answer" id="b" style="display:none;width:990px;">
+<form method="post" name="AnswerForm" id="AnswerForm" action="">
+<input type="hidden" name="n" value="100">
+<input type="hidden" name="Save" value="1">
+<br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-3:<br><textarea name="bvalue3" id="bvalue3" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-4:<br><textarea name="bvalue4" id="bvalue4" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-5:<br><textarea name="bvalue5" id="bvalue5" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-6:<br><textarea name="bvalue6" id="bvalue6" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-7:<br><textarea name="bvalue7" id="bvalue7" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-8:<br><textarea name="bvalue8" id="bvalue8" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
+</form>
+</div><div id="AnswerHere"></div>
+
+</div> <!-- content -->
+
+<div id="PauseDialog" title="Перерыв" style="display:none">
+<center>
+Перерыв для выполнения упражнений для глаз.
+<br>Таймер остановлен на время перерыва.
+<br>Оставшееся время отдыха:
+<br>
+<br>
+<b id="RelaxTimer">-</b>
+</center>
+</div>
+
+
+<script>
+var TIME_LEFT2, mm, ss, TimeFont, UpTimer, active, RelaxTimer, StartRelax, UpInProgress;
+
+active = 0;
+CurrentUpInterval = 10000;
+UpInProgress = 0;
+
+window.onload = function(){
+    var b1 = document.getElementById("AnswerHere");//блок перед которым ставим
+    var b2 = document.getElementById("b");//блок который передвигаем
+    b1.parentNode.insertBefore(b2, b1);
+	b2.style.display = 'none';
+}
+
+function div(val, by){ return (val - val % by) / by; }
+
+// Начать перерыв для глаз
+// !!!Внимание хакерам!!! Время на сервере считается параллельно
+function pauseTest() {
+	$.ajax({
+		type: "POST",
+		url: "up.php?PauseRequest=1",
+		dataType: "json",
+		data: "PauseRequest=1",
+		timeout: 1000,
+		error: function(){
+			console.log('error :)');
+		},
+		success: function(msg){
+			if (msg.pause=='1') {
+				active = 0; // останавливаем обновление таймера НА КЛИЕНТЕ
+
+				StartRelax = Math.floor(new Date().getTime() / 1000);
+				window.clearInterval(RelaxTimer);
+				RelaxTimer = window.setInterval( UpdateRelaxTimer, 1000);
+				UpdateRelaxTimer();
+
+				// Modal dialog:
+				$( "#PauseDialog" ).dialog(
+				{
+					width: 600,
+					modal: true,
+					resizable: false,
+					draggable: false,
+					buttons:	{ 	"Продолжить": function() { $( this ).dialog( "close" ); }			},
+					close: function(event, ui) { $( this ).dialog( "close" ); up(1); }
+				}
+				);
+
+				console.log('onPAUSE !');
+			} else console.log('no access to pause now');
+		}
+	});
+}
+
+// Динамически обновляем данные о времени с сервера
+function up(ContinueTest=0) {
+	if (UpInProgress) return;
+	UpInProgress = 1;
+	RealPing = new Date().getTime();
+	$("#ping").show();
+	$.ajax({
+		type: "POST",
+		url: "up.php",
+		dataType: "json",
+		data: "ContinueTest="+ContinueTest,
+		timeout: 1000,
+		error: function(){
+			//console.log('up_error');
+		},
+		success: function(msg){
+			RealPing = (new Date().getTime() - RealPing) / 1000;
+			//console.log('ping = '+RealPing);
+			//$("#resp").html( msg.text );
+			TimeFix2 =  msg.now - Math.floor(new Date().getTime() / 1000); // Поправка на локальный таймер, который может отличаться от точного времени
+			FINISH = msg.FINISH;
+			if (msg.pause==0) active = 1;
+			//console.log(msg);
+			$("#ping").hide();
+			UpdateTimer2();
+			if (CurrentUpInterval!=msg.UpInterval && msg.UpInterval>0) {
+				console.log('Change up interval to ' + msg.UpInterval);
+				window.clearInterval(UpTimer);
+				CurrentUpInterval = msg.UpInterval;
+				UpTimer = window.setInterval( up, CurrentUpInterval);
+			}
+			if (msg.PauseNeeded==1 && msg.pause==0) pauseTest();
+		}
+	});
+	UpInProgress = 0;
+	//console.log('ok');
+}
+
+function UpdateTimer2() {
+	if (!active) return;
+	//console.log('.');
+	TIME_LEFT2_REAL = FINISH - Math.floor(new Date().getTime() / 1000) - TimeFix2;
+	TIME_LEFT2 = Math.abs(TIME_LEFT2_REAL);
+	mm = div(TIME_LEFT2, 60);
+	ss = TIME_LEFT2 % 60;
+	if (ss<10) ss = '0'+ss;
+	if (mm<5) TimeFont = '<font color="#aa0000">'; else TimeFont = '<font>';
+	if (TIME_LEFT2_REAL>0) $("#topline").html( TimeFont + 'Оставшееся время - ' + mm + ':' + ss + '</font>' );
+	else $("#topline").html( TimeFont + '‼️ <b style="color:red">Время закончилось</b> - ' + mm + ':' + ss + '</font>' );
+	if (TIME_LEFT2_REAL<-0) { $(window).off('beforeunload'); document.location="?n=998"; }
+}
+
+function UpdateRelaxTimer() {
+	RelaxyLeftTime = 300 - (Math.floor(new Date().getTime() / 1000) - StartRelax);
+	if (RelaxyLeftTime<0) { window.clearInterval(RelaxTimer); $( "#PauseDialog" ).dialog( "close" ); }
+	mm = div(RelaxyLeftTime, 60);
+	ss = RelaxyLeftTime % 60;
+	if (ss<10) ss = '0'+ss;
+	$("#RelaxTimer").html( mm+':'+ss );
+}
+
+</script><script>
+var timer2 = window.setInterval( UpdateTimer2, 500);
+var UpTimer = window.setInterval( up, CurrentUpInterval);
+up();
+</script>
+
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.007, memory usage: 561 kb</font></center>
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">Город Тобольск привлекает внимание</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">как необычной красотой</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">так и</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">богатой историей</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">Восхищаясь красотой вечернего Тобольска</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">наш разговор был оживлённым</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">Тобольский кремль</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">считающийся одним из самых красивых в России</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">расположен на вершине холма</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">Тобольск вырастил для России</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">не только химика Д. Менделеева</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">а также</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">поэта-сказочника П. Ершова</span><span class="dynamic-sizer" style="font: 21px Tahoma, sans-serif; letter-spacing: normal; text-transform: none;">автора бессмертного «Конька-Горбунка»</span></body></html>

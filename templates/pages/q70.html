@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="7_files/main7.css" type="text/css" rel="stylesheet">
+<link href="7_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="7_files/mpu.css" type="text/css" rel="stylesheet">
+
+
+<link href="7_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="7_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="7_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="7_files/jquery.ui.touch-punch.min.js"></script>
+<link href="7_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="7_files/virt_kb.js"></script>
+
+</head>
+
+<body>
+<div style="clear:both"></div>
+<div id="header">
+	<div class="subheader2x">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>
+				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
+				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
+			</td><td><p id="topline"><font>Оставшееся время - 42:41</font></p>
+		</td></tr></tbody></table>
+<form method="post" action="" onsubmit="$(window).off('beforeunload');">
+<button class="qnum" type="submit" name="n" value="">Описание</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum" type="submit" name="n" value="60">6</button>
+<button class="qnum qramka" type="submit" name="n" value="70">7</button>
+<button class="qnum" type="submit" name="n" value="80">8</button>
+<button class="qnum" type="submit" name="n" value="90">9</button>
+<button class="qnum" type="submit" name="n" value="100">10</button>
+<button class="qnum" type="submit" name="n" value="999">закончить</button>
+</form>
+	</div>
+</div>
+
+<div id="reserved"></div>
+
+
+
+<script>MyLogin = 'test_32325';</script>
+
+<div id="content">
+
+<div id="QuestionTest">
+
+ <!-- answer -->
+
+<style>
+span.ans {  border-bottom:1px dotted #000088; cursor:pointer; }
+span.ans.marked { border-bottom:1px solid #880000; color:#880000; font-weight:bold; background-color:#ffff88; }
+</style>
+<p class="qq">Прочитайте предложения (знаки препинания не расставлены).</p>
+<p class="qq"><b>1.</b> Укажите предложение с <b>обособленным обстоятельством</b>. </p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы отметить предложение, щёлкните левой кнопкой мыши в любом его месте, после чего предложение выделится цветом. 
+</i></p><br>
+
+<p>
+  <span class="ans" name="a0" value="1">(1)Мы въехали в&nbsp;узкую уже потемневшую улицу заросшую кустарником.</span>
+  <span class="ans" name="a0" value="2">(2)Из-за начавшегося внезапно ливня мы промокли до нитки и&nbsp;замёрзли.</span> 
+  <span class="ans" name="a0" value="3">(3)Становилось слышно как отсчитывая секунды с&nbsp;точностью метронома капает из&nbsp;крана вода.</span></p>
+
+
+
+
+<p class="qq"><b>2.</b> Укажите верное объяснение постановки знаков препинания в этом предложении.</p>
+
+<table>
+<tbody><tr>
+<td><label for="r1"><div class="answer"><input type="radio" class="ans" name="a1" id="r1" value="1" autocomplete="off" spellcheck="false">&nbsp;Обстоятельство
+ выражено деепричастным оборотом, который находится в&nbsp;середине 
+предложения и&nbsp;поэтому выделяется с&nbsp;обеих сторон запятыми.</div></label></td></tr>
+  <tr>
+<td><label for="r2"><div class="answer"><input type="radio" class="ans" name="a1" id="r2" value="2" autocomplete="off" spellcheck="false">&nbsp;Обстоятельство
+ выражено деепричастным оборотом, стоящим после существительного, 
+к&nbsp;которому он относится, поэтому выделяется с&nbsp;обеих сторон 
+запятыми.</div></label></td></tr>
+  <tr>
+<td><label for="r3"><div class="answer"><input type="radio" class="ans" name="a1" id="r3" value="3" autocomplete="off" spellcheck="false">&nbsp;Обстоятельство
+ выражено причастным оборотом, стоящим после определяемого слова, 
+поэтому с&nbsp;обеих сторон выделяется запятыми.</div></label></td></tr>
+  <tr>
+<td><label for="r4"><div class="answer"><input type="radio" class="ans" name="a1" id="r4" value="4" autocomplete="off" spellcheck="false">&nbsp;Обстоятельство,
+ выраженное существительным с&nbsp;предлогом, выделяется запятыми, 
+потому что стоит между подлежащим и&nbsp;сказуемым.</div></label></td></tr>
+</tbody></table>
+
+</div> <!-- QuestionTest -->
+
+<div class="answer" id="b" style="display:none;width:990px;">
+<form method="post" name="AnswerForm" id="AnswerForm" action="">
+<input type="hidden" name="n" value="70" autocomplete="off" spellcheck="false">
+<input type="hidden" name="Save" value="1" autocomplete="off" spellcheck="false">
+<br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
+</form>
+</div><div id="AnswerHere"><button onclick="SetAnswerB()" style="margin-top:15px">Сохранить ответ</button></div>
+
+</div> <!-- content -->
+
+<div id="PauseDialog" title="Перерыв" style="display:none">
+<center>
+Перерыв для выполнения упражнений для глаз.
+<br>Таймер остановлен на время перерыва.
+<br>Оставшееся время отдыха:
+<br>
+<br>
+<b id="RelaxTimer">-</b>
+</center>
+</div>
+
+
+<script>
+var TIME_LEFT2, mm, ss, TimeFont, UpTimer, active, RelaxTimer, StartRelax, UpInProgress;
+
+active = 0;
+CurrentUpInterval = 10000;
+UpInProgress = 0;
+
+window.onload = function(){
+    var b1 = document.getElementById("AnswerHere");//блок перед которым ставим
+    var b2 = document.getElementById("b");//блок который передвигаем
+    b1.parentNode.insertBefore(b2, b1);
+	b2.style.display = 'none';
+}
+
+function div(val, by){ return (val - val % by) / by; }
+
+// Начать перерыв для глаз
+// !!!Внимание хакерам!!! Время на сервере считается параллельно
+function pauseTest() {
+	$.ajax({
+		type: "POST",
+		url: "up.php?PauseRequest=1",
+		dataType: "json",
+		data: "PauseRequest=1",
+		timeout: 1000,
+		error: function(){
+			console.log('error :)');
+		},
+		success: function(msg){
+			if (msg.pause=='1') {
+				active = 0; // останавливаем обновление таймера НА КЛИЕНТЕ
+
+				StartRelax = Math.floor(new Date().getTime() / 1000);
+				window.clearInterval(RelaxTimer);
+				RelaxTimer = window.setInterval( UpdateRelaxTimer, 1000);
+				UpdateRelaxTimer();
+
+				// Modal dialog:
+				$( "#PauseDialog" ).dialog(
+				{
+					width: 600,
+					modal: true,
+					resizable: false,
+					draggable: false,
+					buttons:	{ 	"Продолжить": function() { $( this ).dialog( "close" ); }			},
+					close: function(event, ui) { $( this ).dialog( "close" ); up(1); }
+				}
+				);
+
+				console.log('onPAUSE !');
+			} else console.log('no access to pause now');
+		}
+	});
+}
+
+// Динамически обновляем данные о времени с сервера
+function up(ContinueTest=0) {
+	if (UpInProgress) return;
+	UpInProgress = 1;
+	RealPing = new Date().getTime();
+	$("#ping").show();
+	$.ajax({
+		type: "POST",
+		url: "up.php",
+		dataType: "json",
+		data: "ContinueTest="+ContinueTest,
+		timeout: 1000,
+		error: function(){
+			//console.log('up_error');
+		},
+		success: function(msg){
+			RealPing = (new Date().getTime() - RealPing) / 1000;
+			//console.log('ping = '+RealPing);
+			//$("#resp").html( msg.text );
+			TimeFix2 =  msg.now - Math.floor(new Date().getTime() / 1000); // Поправка на локальный таймер, который может отличаться от точного времени
+			FINISH = msg.FINISH;
+			if (msg.pause==0) active = 1;
+			//console.log(msg);
+			$("#ping").hide();
+			UpdateTimer2();
+			if (CurrentUpInterval!=msg.UpInterval && msg.UpInterval>0) {
+				console.log('Change up interval to ' + msg.UpInterval);
+				window.clearInterval(UpTimer);
+				CurrentUpInterval = msg.UpInterval;
+				UpTimer = window.setInterval( up, CurrentUpInterval);
+			}
+			if (msg.PauseNeeded==1 && msg.pause==0) pauseTest();
+		}
+	});
+	UpInProgress = 0;
+	//console.log('ok');
+}
+
+function UpdateTimer2() {
+	if (!active) return;
+	//console.log('.');
+	TIME_LEFT2_REAL = FINISH - Math.floor(new Date().getTime() / 1000) - TimeFix2;
+	TIME_LEFT2 = Math.abs(TIME_LEFT2_REAL);
+	mm = div(TIME_LEFT2, 60);
+	ss = TIME_LEFT2 % 60;
+	if (ss<10) ss = '0'+ss;
+	if (mm<5) TimeFont = '<font color="#aa0000">'; else TimeFont = '<font>';
+	if (TIME_LEFT2_REAL>0) $("#topline").html( TimeFont + 'Оставшееся время - ' + mm + ':' + ss + '</font>' );
+	else $("#topline").html( TimeFont + '‼️ <b style="color:red">Время закончилось</b> - ' + mm + ':' + ss + '</font>' );
+	if (TIME_LEFT2_REAL<-0) { $(window).off('beforeunload'); document.location="?n=998"; }
+}
+
+function UpdateRelaxTimer() {
+	RelaxyLeftTime = 300 - (Math.floor(new Date().getTime() / 1000) - StartRelax);
+	if (RelaxyLeftTime<0) { window.clearInterval(RelaxTimer); $( "#PauseDialog" ).dialog( "close" ); }
+	mm = div(RelaxyLeftTime, 60);
+	ss = RelaxyLeftTime % 60;
+	if (ss<10) ss = '0'+ss;
+	$("#RelaxTimer").html( mm+':'+ss );
+}
+
+</script><script>
+var timer2 = window.setInterval( UpdateTimer2, 500);
+var UpTimer = window.setInterval( up, CurrentUpInterval);
+up();
+</script><script type="text/javascript" src="7_files/basic_am7.js"></script>
+
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.005, memory usage: 488 kb</font></center>
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div></body></html>

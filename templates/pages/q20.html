@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no" class="notranslate"><head>
+<title>Компьютерное тестирование</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="2_files/main7.css" type="text/css" rel="stylesheet">
+<link href="2_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="2_files/mpu.css" type="text/css" rel="stylesheet">
+
+
+<link href="2_files/kim.css" type="text/css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="2_files/jquery.min.js"></script>
+
+<!-- JQueryUI -->
+<script type="text/javascript" src="2_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="2_files/jquery.ui.touch-punch.min.js"></script>
+<link href="2_files/jquery-ui.css" type="text/css" rel="stylesheet">
+
+<!-- Virtual keyboard plugin -->
+<script type="text/javascript" src="2_files/virt_kb.js"></script>
+
+</head>
+
+<body>
+<div style="clear:both"></div>
+<div id="header">
+	<div class="subheader2x">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>
+				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
+				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
+			</td><td><p id="topline"><font>Оставшееся время - 43:00</font></p>
+		</td></tr></tbody></table>
+<form method="post" action="" onsubmit="$(window).off('beforeunload');">
+<button class="qnum" type="submit" name="n" value="">Описание</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum qramka" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum" type="submit" name="n" value="60">6</button>
+<button class="qnum" type="submit" name="n" value="70">7</button>
+<button class="qnum" type="submit" name="n" value="80">8</button>
+<button class="qnum" type="submit" name="n" value="90">9</button>
+<button class="qnum" type="submit" name="n" value="100">10</button>
+<button class="qnum" type="submit" name="n" value="999">закончить</button>
+</form>
+	</div>
+</div>
+
+<div id="reserved"></div>
+
+
+
+<script>MyLogin = 'test_32325';</script>
+
+<div id="content">
+
+<div id="QuestionTest">
+
+ <!-- answer -->
+
+<style>
+.td_radio {
+		position: relative; text-align:left; cursor:pointer;
+	}
+	.td_radio div {
+		position: absolute;top: 7px;
+	}
+	.td_radio table {
+		position: absolute;opacity: 0;bottom: 0;right: 0; width: 100%; height: 100%;
+	}
+	input[type=checkbox] { cursor:pointer; }
+	table.tbl tr:hover td { background-color:#ffffaa; }
+</style>
+<p class="qq">Укажите <b>три</b> подчинительных словосочетания, нажав на верный ответ левой кнопкой мыши.<br>
+Для каждого из указанных вами словосочетаний выберите из выпадающего списка верный вид связи.</p>
+<center><table class="tbl">
+<tbody><tr>
+<th width="300">ПРИМЕРЫ</th>
+<th>ВИД СВЯЗИ</th>
+
+</tr>
+<tr>
+<td class="td_radio" onclick="SetCheckedv('a1',1,'b1')"><div><input type="checkbox" id="a1" name="a1" value="1" onclick="SetCheckedv('a1',1,'b1')">&nbsp;стремительно разв(е,и)ваясь</div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td><center>
+<select id="b1" name="b1" style="visibility:hidden">
+<option value="" selected="selected">- выберите ответ -</option>
+<option value="1">согласование</option>
+<option value="2">управление</option>
+<option value="3">примыкание</option>
+</select> </center> 
+</td>
+</tr>
+<tr>
+<td class="td_radio" onclick="SetCheckedv('a2',2,'b2')"><div><input type="checkbox" id="a2" name="a2" value="2" onclick="SetCheckedv('a2',2,'b2')">&nbsp;пр(а,о)сить царя</div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td><center>
+<select id="b2" name="b2" style="visibility:hidden">
+<option value="" selected="selected">- выберите ответ -</option>
+<option value="1">согласование</option>
+<option value="2">управление</option>
+<option value="3">примыкание</option>
+</select> </center> 
+</td>
+</tr>
+<tr>
+<td class="td_radio" onclick="SetCheckedv('a3',3,'b3')"><div><input type="checkbox" id="a3" name="a3" value="3" onclick="SetCheckedv('a3',3,'b3')">&nbsp;кр(е,и)млёвские стены</div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td><center>
+<select id="b3" name="b3" style="visibility:hidden">
+<option value="" selected="selected">- выберите ответ -</option>
+<option value="1">согласование</option>
+<option value="2">управление</option>
+<option value="3">примыкание</option>
+</select></center>  
+</td>
+</tr>
+<tr>
+<td class="td_radio" onclick="SetCheckedv('a4',4,'b4')"><div><input type="checkbox" id="a4" name="a4" value="4" onclick="SetCheckedv('a4',4,'b4')">&nbsp;через него</div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td><center>
+<select id="b4" name="b4" style="visibility:hidden">
+<option value="" selected="selected">- выберите ответ -</option>
+<option value="1">согласование</option>
+<option value="2">управление</option>
+<option value="3">примыкание</option>
+</select> </center> 
+</td>
+</tr>
+<tr>
+<td class="td_radio" onclick="SetCheckedv('a5',5,'b5')"><div><input type="checkbox" id="a5" name="a5" value="5" onclick="SetCheckedv('a5',5,'b5')">&nbsp;г(а,о)рел и&nbsp;стро(е,и)лся</div><table><tbody><tr><td></td></tr></tbody></table></td>
+<td><center>
+<select id="b5" name="b5" style="visibility:hidden">
+<option value="" selected="selected">- выберите ответ -</option>
+<option value="1">согласование</option>
+<option value="2">управление</option>
+<option value="3">примыкание</option>
+</select> </center> 
+</td>
+</tr>
+</tbody></table></center>
+<br>
+<button onclick="Store()">Сохранить ответ</button>
+<script>
+var col = 0;
+function Store() {
+	$('#bvalue0').val('');$('#bvalue9').val('');
+	if ($('#a1').attr("checked")){ $('#bvalue1').val('1'); $('#bvalue0').val( $('#bvalue0').val() + $('#a1').val() ); $('#bvalue7').val($('#b1').val());}else{ $('#bvalue1').val('0'); $('#bvalue7').val('-');}
+	if ($('#a2').attr("checked")){ $('#bvalue2').val('1'); $('#bvalue0').val( $('#bvalue0').val() + $('#a2').val() ); $('#bvalue8').val($('#b2').val());}else{ $('#bvalue2').val('0'); $('#bvalue8').val('-');}
+	if ($('#a3').attr("checked")){ $('#bvalue3').val('1'); $('#bvalue0').val( $('#bvalue0').val() + $('#a3').val() ); $('#bvalue9').val($('#b3').val());}else{ $('#bvalue3').val('0'); $('#bvalue9').val('-');}
+	if ($('#a4').attr("checked")){ $('#bvalue4').val('1'); $('#bvalue0').val( $('#bvalue0').val() + $('#a4').val() ); $('#bvalue10').val($('#b4').val());}else{ $('#bvalue4').val('0'); $('#bvalue10').val('-');}
+	if ($('#a5').attr("checked")){ $('#bvalue5').val('1'); $('#bvalue0').val( $('#bvalue0').val() + $('#a5').val() ); $('#bvalue11').val($('#b5').val());}else{ $('#bvalue5').val('0'); $('#bvalue11').val('-');}
+	$('#bvalue6').val( $('#bvalue7').val() + $('#bvalue8').val() + $('#bvalue9').val() + $('#bvalue10').val() + $('#bvalue11').val() );
+	SetAnswerB();
+	return;
+}
+if ($('#bvalue1').val()=='1'){ $('#a1').attr("checked","checked"); $('#b1').val( $('#bvalue7').val() ); document.getElementById('b1').style.visibility = "visible"; col = col + 1;}
+if ($('#bvalue2').val()=='1'){ $('#a2').attr("checked","checked"); $('#b2').val( $('#bvalue8').val() ); document.getElementById('b2').style.visibility = "visible"; col = col + 1;}
+if ($('#bvalue3').val()=='1'){ $('#a3').attr("checked","checked"); $('#b3').val( $('#bvalue9').val() ); document.getElementById('b3').style.visibility = "visible"; col = col + 1;}
+if ($('#bvalue4').val()=='1'){ $('#a4').attr("checked","checked"); $('#b4').val( $('#bvalue10').val() ); document.getElementById('b4').style.visibility = "visible"; col = col + 1;}
+if ($('#bvalue5').val()=='1'){ $('#a5').attr("checked","checked"); $('#b5').val( $('#bvalue11').val() ); document.getElementById('b5').style.visibility = "visible"; col = col + 1;}
+if (col >= 3) {
+	for (let i=1; i<6; i++){if (!($("input[name=a"+i+"][value="+i+"]").attr("checked"))) {document.getElementById('a'+i).disabled = true;}}
+		}
+function SetCheckedv(Xname, Xvalue, Xname2) { 
+	if ($("input[name="+Xname+"][value="+Xvalue+"]").attr("checked")){
+	  SetNoChecked(Xname,Xvalue);document.getElementById(Xname2).style.visibility = "hidden";
+	} else{
+	  if (col < 3) {SetChecked(Xname,Xvalue);document.getElementById(Xname2).style.visibility = "visible";}
+	} 
+	if (col >= 3) {
+	for (let i=1; i<6; i++){if (!($("input[name=a"+i+"][value="+i+"]").attr("checked"))) {document.getElementById('a'+i).disabled = true;}}
+} else {
+for (let i=1; i<6; i++){document.getElementById('a'+i).disabled = false;}
+}
+}
+function SetChecked(Xname, Xvalue) { 
+	$("input[name="+Xname+"][value="+Xvalue+"]").attr("checked", true);  col = col + 1;}
+function SetNoChecked(Xname, Xvalue) { 
+	$("input[name="+Xname+"][value="+Xvalue+"]").attr("checked", false);  col = col - 1;}
+</script>
+
+</div> <!-- QuestionTest -->
+
+<div class="answer" id="b" style="display:none;width:990px;">
+<form method="post" name="AnswerForm" id="AnswerForm" action="">
+<input type="hidden" name="n" value="20">
+<input type="hidden" name="Save" value="1">
+<br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-3:<br><textarea name="bvalue3" id="bvalue3" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-4:<br><textarea name="bvalue4" id="bvalue4" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-5:<br><textarea name="bvalue5" id="bvalue5" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-6:<br><textarea name="bvalue6" id="bvalue6" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-7:<br><textarea name="bvalue7" id="bvalue7" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-8:<br><textarea name="bvalue8" id="bvalue8" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-9:<br><textarea name="bvalue9" id="bvalue9" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-10:<br><textarea name="bvalue10" id="bvalue10" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br>Ответ-11:<br><textarea name="bvalue11" id="bvalue11" rows="10" cols="120" style="font-size:12pt;padding:2px"></textarea>
+<br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
+</form>
+</div><div id="AnswerHere"></div>
+
+</div> <!-- content -->
+
+<div id="PauseDialog" title="Перерыв" style="display:none">
+<center>
+Перерыв для выполнения упражнений для глаз.
+<br>Таймер остановлен на время перерыва.
+<br>Оставшееся время отдыха:
+<br>
+<br>
+<b id="RelaxTimer">-</b>
+</center>
+</div>
+
+
+<script>
+var TIME_LEFT2, mm, ss, TimeFont, UpTimer, active, RelaxTimer, StartRelax, UpInProgress;
+
+active = 0;
+CurrentUpInterval = 10000;
+UpInProgress = 0;
+
+window.onload = function(){
+    var b1 = document.getElementById("AnswerHere");//блок перед которым ставим
+    var b2 = document.getElementById("b");//блок который передвигаем
+    b1.parentNode.insertBefore(b2, b1);
+	b2.style.display = 'none';
+}
+
+function div(val, by){ return (val - val % by) / by; }
+
+// Начать перерыв для глаз
+// !!!Внимание хакерам!!! Время на сервере считается параллельно
+function pauseTest() {
+	$.ajax({
+		type: "POST",
+		url: "up.php?PauseRequest=1",
+		dataType: "json",
+		data: "PauseRequest=1",
+		timeout: 1000,
+		error: function(){
+			console.log('error :)');
+		},
+		success: function(msg){
+			if (msg.pause=='1') {
+				active = 0; // останавливаем обновление таймера НА КЛИЕНТЕ
+
+				StartRelax = Math.floor(new Date().getTime() / 1000);
+				window.clearInterval(RelaxTimer);
+				RelaxTimer = window.setInterval( UpdateRelaxTimer, 1000);
+				UpdateRelaxTimer();
+
+				// Modal dialog:
+				$( "#PauseDialog" ).dialog(
+				{
+					width: 600,
+					modal: true,
+					resizable: false,
+					draggable: false,
+					buttons:	{ 	"Продолжить": function() { $( this ).dialog( "close" ); }			},
+					close: function(event, ui) { $( this ).dialog( "close" ); up(1); }
+				}
+				);
+
+				console.log('onPAUSE !');
+			} else console.log('no access to pause now');
+		}
+	});
+}
+
+// Динамически обновляем данные о времени с сервера
+function up(ContinueTest=0) {
+	if (UpInProgress) return;
+	UpInProgress = 1;
+	RealPing = new Date().getTime();
+	$("#ping").show();
+	$.ajax({
+		type: "POST",
+		url: "up.php",
+		dataType: "json",
+		data: "ContinueTest="+ContinueTest,
+		timeout: 1000,
+		error: function(){
+			//console.log('up_error');
+		},
+		success: function(msg){
+			RealPing = (new Date().getTime() - RealPing) / 1000;
+			//console.log('ping = '+RealPing);
+			//$("#resp").html( msg.text );
+			TimeFix2 =  msg.now - Math.floor(new Date().getTime() / 1000); // Поправка на локальный таймер, который может отличаться от точного времени
+			FINISH = msg.FINISH;
+			if (msg.pause==0) active = 1;
+			//console.log(msg);
+			$("#ping").hide();
+			UpdateTimer2();
+			if (CurrentUpInterval!=msg.UpInterval && msg.UpInterval>0) {
+				console.log('Change up interval to ' + msg.UpInterval);
+				window.clearInterval(UpTimer);
+				CurrentUpInterval = msg.UpInterval;
+				UpTimer = window.setInterval( up, CurrentUpInterval);
+			}
+			if (msg.PauseNeeded==1 && msg.pause==0) pauseTest();
+		}
+	});
+	UpInProgress = 0;
+	//console.log('ok');
+}
+
+function UpdateTimer2() {
+	if (!active) return;
+	//console.log('.');
+	TIME_LEFT2_REAL = FINISH - Math.floor(new Date().getTime() / 1000) - TimeFix2;
+	TIME_LEFT2 = Math.abs(TIME_LEFT2_REAL);
+	mm = div(TIME_LEFT2, 60);
+	ss = TIME_LEFT2 % 60;
+	if (ss<10) ss = '0'+ss;
+	if (mm<5) TimeFont = '<font color="#aa0000">'; else TimeFont = '<font>';
+	if (TIME_LEFT2_REAL>0) $("#topline").html( TimeFont + 'Оставшееся время - ' + mm + ':' + ss + '</font>' );
+	else $("#topline").html( TimeFont + '‼️ <b style="color:red">Время закончилось</b> - ' + mm + ':' + ss + '</font>' );
+	if (TIME_LEFT2_REAL<-0) { $(window).off('beforeunload'); document.location="?n=998"; }
+}
+
+function UpdateRelaxTimer() {
+	RelaxyLeftTime = 300 - (Math.floor(new Date().getTime() / 1000) - StartRelax);
+	if (RelaxyLeftTime<0) { window.clearInterval(RelaxTimer); $( "#PauseDialog" ).dialog( "close" ); }
+	mm = div(RelaxyLeftTime, 60);
+	ss = RelaxyLeftTime % 60;
+	if (ss<10) ss = '0'+ss;
+	$("#RelaxTimer").html( mm+':'+ss );
+}
+
+</script><script>
+var timer2 = window.setInterval( UpdateTimer2, 500);
+var UpTimer = window.setInterval( up, CurrentUpInterval);
+up();
+</script>
+
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.004, memory usage: 499 kb</font></center>
+<script>
+function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
+
+function FormAnswer(n) {
+//	document.getElementById("qanswer"+n).checked = ! document.getElementById("qanswer"+n).checked;
+	r = '';
+	if ($('#qanswer1:checked').length) r=r+'1';
+	if ($('#qanswer2:checked').length) r=r+'2';
+	if ($('#qanswer3:checked').length) r=r+'3';
+	if ($('#qanswer4:checked').length) r=r+'4';
+	if ($('#qanswer5:checked').length) r=r+'5';
+	if ($('#qanswer6:checked').length) r=r+'6';
+	if ($('#qanswer7:checked').length) r=r+'7';
+	if ($('#qanswer8:checked').length) r=r+'8';
+	if ($('#qanswer9:checked').length) r=r+'9';
+	if ($('#qanswer10:checked').length) r=r+'10';
+	if ($('#qanswer11:checked').length) r=r+'11';
+	if ($('#qanswer12:checked').length) r=r+'12';
+	if ($('#qanswer13:checked').length) r=r+'13';
+	if ($('#qanswer14:checked').length) r=r+'14';
+	if ($('#qanswer15:checked').length) r=r+'15';
+	document.getElementById("bvalue0").value = r;
+}
+
+</script>
+
+
+<div id="kb" class="kb"></div></body></html>

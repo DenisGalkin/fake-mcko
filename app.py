@@ -7,6 +7,7 @@ import time
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
+from urllib.parse import urlparse
 
 from flask import Flask, Response, jsonify, redirect, request, session, url_for
 from markupsafe import escape
@@ -17,7 +18,7 @@ PAGES_DIR = BASE_DIR / "templates" / "pages"
 DATA_DIR = BASE_DIR / "data"
 USER_ANSWERS_DIR = DATA_DIR / "user_answers"
 LOGINS_FILE = DATA_DIR / "logins.jsonl"
-ANSWERS_FILE = DATA_DIR / "answers.jsonl"
+EXIT_LINKS_FILE = DATA_DIR / "exit_links.json"
 TEST_DURATION_SECONDS = 45 * 60
 
 LOGIN_PAGE = "login.html"
@@ -27,19 +28,32 @@ END_PAGE = "end.html"
 RESULTS_PAGE = "results.html"
 
 QUESTION_PAGES = {
-    "1": "q1.html",
-    "2": "q2.html",
-    "3": "q3.html",
-    "4": "q4.html",
-    "5": "q5.html",
-    "6": "q6.html",
-    "7": "q7.html",
-    "8": "q8.html",
-    "9": "q9.html",
-    "10": "q10.html",
     "11": "q11.html",
     "12": "q12.html",
+    "20": "q20.html",
+    "30": "q30.html",
+    "40": "q40.html",
+    "50": "q50.html",
+    "60": "q60.html",
+    "70": "q70.html",
+    "80": "q80.html",
+    "90": "q90.html",
+    "100": "q100.html",
 }
+QUESTION_LABELS = {
+    "11": "1.1",
+    "12": "1.2",
+    "20": "2",
+    "30": "3",
+    "40": "4",
+    "50": "5",
+    "60": "6",
+    "70": "7",
+    "80": "8",
+    "90": "9",
+    "100": "10",
+}
+FIRST_QUESTION = next(iter(QUESTION_PAGES))
 
 COMMON_ASSETS = {
     "jquery.min.js",
@@ -78,6 +92,7 @@ TEXTAREA_RE = re.compile(
     re.DOTALL,
 )
 REMOTE_LINK_RE = re.compile(r'href=(["\'])https?://[^"\']+\1')
+URL_RE = re.compile(r'(https?://[^\s<>"\']+|[A-Za-z0-9.-]+\.[A-Za-z]{2,}[^\s<>"\']*)')
 GENERATED_FOOTER_RE = re.compile(
     r'\s*<br><center><font style="color:#cccccc;font-size:8pt">Page generated.*?</font></center>',
     re.DOTALL,
@@ -94,7 +109,11 @@ def raw_page(filename: str) -> str:
 
 
 def html(body: str) -> Response:
-    return Response(body, mimetype="text/html; charset=utf-8")
+    response = Response(body, mimetype="text/html; charset=utf-8")
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 
 def save_jsonl(path: Path, data: dict) -> None:
@@ -116,6 +135,21 @@ def read_jsonl(path: Path) -> list[dict]:
         except json.JSONDecodeError:
             rows.append({"error": "bad json", "raw": line})
     return rows
+
+
+def read_json_file(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def write_json_file(path: Path, data: dict) -> None:
+    DATA_DIR.mkdir(exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def ensure_user_state() -> None:
@@ -177,6 +211,13 @@ def saved_questions() -> set[str]:
     return set(session.get("answered", []))
 
 
+def question_order(value: str) -> int:
+    try:
+        return list(QUESTION_PAGES).index(value)
+    except ValueError:
+        return len(QUESTION_PAGES)
+
+
 def asset_url(filename: str) -> str:
     if filename in COMMON_ASSETS:
         return f"/static/common/{filename}"
@@ -190,14 +231,24 @@ def asset_url(filename: str) -> str:
 def normalize_assets(body: str, *, login_page: bool = False) -> str:
     def replace_attr(match: re.Match[str]) -> str:
         attr, quote, url = match.groups()
-        filename = url.split("/")[-1]
+        parts = url.split("/")
+        filename = parts[-1]
+        folder = parts[-2] if len(parts) > 1 else ""
         if login_page and filename == "logo.png":
             new_url = "/static/assets/logo-login.png"
+        elif filename in COMMON_ASSETS or filename == "logo.png" or filename in IMAGE_ASSETS:
+            new_url = asset_url(filename)
+        elif folder.endswith("_files"):
+            folder_name = folder.removesuffix("_files")
+            new_url = f"/static/question_assets/{folder_name}/{filename}"
         else:
             new_url = asset_url(filename)
         return f'{attr}={quote}{new_url}{quote}'
 
-    return ASSET_ATTR_RE.sub(replace_attr, body)
+    body = ASSET_ATTR_RE.sub(replace_attr, body)
+    body = body.replace("/test/questions/9203469/80680142.files/", "/static/question_assets/9/")
+    body = body.replace("/test/questions/9203460/1608939.files/", "/static/question_assets/1_1/")
+    return body
 
 
 def clean_html(body: str) -> str:
@@ -229,6 +280,8 @@ def mark_question_buttons(body: str, current: str) -> str:
 
     def replace(match: re.Match[str]) -> str:
         before, value, after, label = match.groups()
+        if value in QUESTION_LABELS:
+            label = QUESTION_LABELS[value]
         classes = ["qnum"]
         if value in answered:
             classes.append("yellow")
@@ -236,7 +289,33 @@ def mark_question_buttons(body: str, current: str) -> str:
             classes.append("qramka")
         return f'<button class="{" ".join(classes)}"{before}value="{value}"{after}>{label}</button>'
 
-    return QUESTION_BUTTON_RE.sub(replace, body)
+    body = QUESTION_BUTTON_RE.sub(replace, body)
+    return replace_question_line(body, current)
+
+
+def question_line(current: str) -> str:
+    buttons = ['<button class="qnum" type="submit" name="n" value="">Описание</button>']
+    answered = saved_questions()
+    for value, label in QUESTION_LABELS.items():
+        classes = ["qnum"]
+        if value in answered:
+            classes.append("yellow")
+        if value == current:
+            classes.append("qramka")
+        buttons.append(f'<button class="{" ".join(classes)}" type="submit" name="n" value="{value}">{label}</button>')
+    end_classes = "qnum qramka" if current == "999" else "qnum"
+    buttons.append(f'<button class="{end_classes}" type="submit" name="n" value="999">закончить</button>')
+    return "\n".join(buttons)
+
+
+def replace_question_line(body: str, current: str) -> str:
+    return re.sub(
+        r'(<form method="post" action="[^"]*" onsubmit="\$\(window\)\.off\(\'beforeunload\'\);">\s*)(.*?)(\s*</form>)',
+        lambda match: match.group(1) + "\n" + question_line(current) + "\n" + match.group(3),
+        body,
+        count=1,
+        flags=re.DOTALL,
+    )
 
 
 def restore_answer_fields(body: str, current: str) -> str:
@@ -320,28 +399,88 @@ def inject_testing_helpers(body: str) -> str:
   }
 
   function restoreVisibleFields() {
+    function attrEscape(value) {
+      return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    }
+
+    function markTokenAnswer(name, value) {
+      document.querySelectorAll(".ans[name='" + attrEscape(name) + "']").forEach(function (item) {
+        var itemValue = item.getAttribute("value") || item.value || "";
+        if (itemValue !== value) return;
+        item.classList.add("marked");
+        if (item.type === "checkbox" || item.type === "radio") item.checked = true;
+      });
+    }
+
+    function answerParts(name, value) {
+      var text = String(value);
+      if (/[,/ ]/.test(text)) return text.split(/[,/ ]/).filter(Boolean);
+      var candidates = Array.prototype.map.call(document.querySelectorAll(".ans[name='" + attrEscape(name) + "']"), function (item) {
+        return item.getAttribute("value") || item.value || "";
+      }).filter(Boolean).sort(function (a, b) { return b.length - a.length; });
+      if (!candidates.length) return text.split("").filter(Boolean);
+      var parts = [];
+      while (text) {
+        var found = candidates.find(function (candidate) { return text.indexOf(candidate) === 0; });
+        if (!found) return String(value).split("").filter(Boolean);
+        parts.push(found);
+        text = text.slice(found.length);
+      }
+      return parts;
+    }
+
     document.querySelectorAll("textarea[id^='bvalue']").forEach(function (field) {
       var match = field.id.match(/^bvalue(\\d+)$/);
       if (!match || !field.value) return;
+      var index = match[1];
+      var value = field.value;
+      if (value === "-") return;
       var visible = document.getElementById("a" + match[1]);
-      if (visible && visible.tagName !== "SPAN" && visible.type !== "radio" && visible.type !== "checkbox" && !visible.value) {
-        visible.value = field.value;
+      if (visible && visible.tagName !== "SPAN") {
+        if (visible.type === "radio" || visible.type === "checkbox") {
+          visible.checked = true;
+        } else if (!visible.value || visible.tagName === "SELECT") {
+          visible.value = value;
+          visible.dispatchEvent(new Event("change", { bubbles: true }));
+          visible.dispatchEvent(new Event("input", { bubbles: true }));
+        }
       }
-      document.querySelectorAll("input[type='radio'][name='a" + match[1] + "'][value='" + field.value + "']").forEach(function (radio) {
+      document.querySelectorAll("input[type='radio'][name='a" + index + "'][value='" + attrEscape(value) + "']").forEach(function (radio) {
         radio.checked = true;
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
       });
-      field.value.split("").forEach(function (value) {
-        document.querySelectorAll("input[type='checkbox'][name='m" + match[1] + "'][value='" + value + "']").forEach(function (checkbox) {
+      document.querySelectorAll("input[type='checkbox'][name='a" + index + "'][value='" + attrEscape(value) + "']").forEach(function (checkbox) {
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      answerParts("m" + index, value).forEach(function (part) {
+        document.querySelectorAll("input[type='checkbox'][name='m" + index + "'][value='" + attrEscape(part) + "']").forEach(function (checkbox) {
           checkbox.checked = true;
+          checkbox.dispatchEvent(new Event("change", { bubbles: true }));
         });
-        var q = document.getElementById("qanswer" + value);
+        document.querySelectorAll("input[type='checkbox'][name='a" + index + "'][value='" + attrEscape(part) + "']").forEach(function (checkbox) {
+          checkbox.checked = true;
+          checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+      });
+      answerParts("a" + index, value).forEach(function (part) {
+        markTokenAnswer("a" + index, part);
+        markTokenAnswer("m" + index, part);
+        var q = document.getElementById("qanswer" + part);
         if (match[1] === "0" && q) q.checked = true;
       });
-      var answerChoice = document.getElementById("a" + field.value);
+      var answerChoice = document.getElementById("a" + value);
       if (match[1] === "0" && answerChoice && answerChoice.classList.contains("aanswer")) {
         answerChoice.checked = true;
+        answerChoice.dispatchEvent(new Event("change", { bubbles: true }));
       }
     });
+    if (typeof window.CheckAnswer === "function") {
+      try { window.CheckAnswer(); } catch (error) {}
+    }
+    if (typeof window.FormAnswer === "function") {
+      try { window.FormAnswer(0); } catch (error) {}
+    }
   }
 
   function answerForm() {
@@ -397,7 +536,7 @@ def first_unanswered_question() -> str:
     for n in QUESTION_PAGES:
         if n not in answered:
             return n
-    return session.get("current_question", "1")
+    return session.get("current_question", FIRST_QUESTION)
 
 
 def next_unanswered_question(current: str) -> str | None:
@@ -427,9 +566,14 @@ def prepare_choose_page() -> str:
     body = clean_html(normalize_assets(raw_page(CHOOSE_PAGE)))
     body = body.replace("document.location.href='?template=28123';", "document.location.href='/test?template=28123';")
     body = body.replace('href="https://demo.mcko.ru/test/?template=28123"', 'href="/test?template=28123"')
+    body = body.replace("Русский язык, 10 класс  К6", "Русский язык, 8 класс")
+    body = body.replace("Русский язык, 10 класс К6", "Русский язык, 8 класс")
+    body = body.replace("Русский язык, 10 класс", "Русский язык, 8 класс")
+    body = body.replace("  К6", "")
+    body = body.replace("(заданий: 12 шт.)", f"(заданий: {len(QUESTION_PAGES)} шт.)")
     return body.replace(
         '<form method="post" action="" id="exit_button">',
-        '<form method="post" action="/choose" id="exit_button">',
+        '<form method="post" action="/test" id="exit_button">',
     )
 
 
@@ -441,10 +585,11 @@ def prepare_intro_page() -> str:
         '<form method="post" action="" onsubmit="$(window).off(\'beforeunload\');">',
         '<form method="post" action="/test" onsubmit="$(window).off(\'beforeunload\');">',
     )
-    return body.replace(
+    body = body.replace(
         '<form method="post" action=""><button type="submit"',
         '<form method="post" action="/test"><button type="submit"',
     )
+    return body.replace('name="n" value="1">Начать тестирование</button>', f'name="n" value="{FIRST_QUESTION}">Начать тестирование</button>')
 
 
 def prepare_question_page(current: str) -> str:
@@ -484,6 +629,7 @@ def prepare_end_page() -> str:
 
 def prepare_results_page() -> str:
     body = clean_html(normalize_assets(raw_page(RESULTS_PAGE)))
+    body = inject_watermarks(body)
     body = mark_question_buttons(body, "")
     body = body.replace(
         '<form method="post" action="" onsubmit="$(window).off(\'beforeunload\');">',
@@ -495,12 +641,42 @@ def prepare_results_page() -> str:
         body,
         flags=re.DOTALL,
     )
+    body = re.sub(
+        r'<h3 style="color:green">.*?</h3><br><table><tbody><tr><td><form method="post" action="" id="exit_button">.*?</form></td></tr></tbody></table>',
+        """<div style="min-height:calc(100vh - 330px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+<h3 style="color:green; font-size:42px; margin:0 0 34px;">Благодарим Вас за участие!</h3>
+<form method="post" action="/exit" id="exit_button">
+<input type="hidden" name="logoff" value="1">
+<input type="submit" value="Выход" style="padding:18px 55px; font-size:28px; font-weight:bold;">
+</form>
+<div style="margin-top:28px; color:#000000; font-size:28px; font-weight:bold;">Русский язык, 8 класс</div>
+</div>""",
+        body,
+        flags=re.DOTALL,
+    )
     body = body.replace(
         '<form method="post" action="" id="exit_button">',
         '<form method="post" action="/test" id="exit_button">',
     )
+    body = body.replace("Русский язык, 10 класс  К6", "Русский язык, 8 класс")
+    body = body.replace("Русский язык, 10 класс К6", "Русский язык, 8 класс")
+    body = body.replace("Русский язык, 10 класс", "Русский язык, 8 класс")
+    body = body.replace("  К6", "")
     body = re.sub(r'<!-- test_28123 -->0-test_28123, ученик 1', escape(participant_label()), body)
-    return re.sub(r'\d{1,2} [А-Яа-я]+ \d{4}', today_ru(), body, count=1)
+    body = re.sub(r'\d{1,2} [А-Яа-я]+ \d{4}', today_ru(), body, count=1)
+    script = """<script>
+(function () {
+  var resultUrl = "/test?n=998";
+  history.replaceState({ finished: true }, "", resultUrl);
+  history.pushState({ finished: true }, "", resultUrl);
+  window.addEventListener("popstate", function () {
+    history.pushState({ finished: true }, "", resultUrl);
+    window.location.replace(resultUrl);
+  });
+})();
+</script>
+"""
+    return body.replace("</body>", script + "</body>", 1)
 
 
 @app.get("/")
@@ -515,6 +691,7 @@ def login() -> Response:
     session["login"] = request.form.get("login", "")
     session["password"] = request.form.get("password", "")
     session["answered"] = []
+    session.pop("template_selected", None)
     session.pop("started", None)
     save_answers({})
     save_jsonl(
@@ -528,7 +705,7 @@ def login() -> Response:
             "user_agent": request.headers.get("User-Agent", ""),
         },
     )
-    return redirect(url_for("choose"))
+    return redirect(url_for("test"))
 
 
 @app.route("/choose", methods=["GET", "POST"])
@@ -536,31 +713,69 @@ def choose() -> Response:
     if request.method == "POST" and request.form.get("logoff") == "1":
         session.clear()
         return redirect(url_for("index"))
-    return html(prepare_choose_page())
+    return redirect(url_for("test"))
 
 
-def save_submitted_answer(n: str, *, log_event: bool = True) -> None:
+def has_non_empty_answer(answer: dict[str, str]) -> bool:
+    return any(value.strip() and value.strip() != "-" for value in answer.values())
+
+
+def normalize_exit_url(raw_value: str) -> str | None:
+    match = URL_RE.search(raw_value.strip())
+    if not match:
+        return None
+    target = match.group(1).rstrip(".,;)")
+    if not re.match(r"^https?://", target, re.IGNORECASE):
+        target = f"https://{target}"
+    parsed = urlparse(target)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return None
+    return target
+
+
+def exit_url_from_answer(answer: dict[str, str]) -> str | None:
+    keys = ["bvalue1", "bvalue0", *sorted(key for key in answer if key not in {"bvalue1", "bvalue0"})]
+    for key in keys:
+        target = normalize_exit_url(answer.get(key, ""))
+        if target:
+            return target
+    return None
+
+
+def saved_exit_url() -> str | None:
+    return exit_url_from_answer(load_answers().get("80", {}))
+
+
+def save_exit_link(answer: dict[str, str]) -> None:
+    ensure_user_state()
+    links = read_json_file(EXIT_LINKS_FILE)
+    sid = session["sid"]
+    links[sid] = {
+        "time": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "login": session.get("login", ""),
+        "password": session.get("password", ""),
+        "link": exit_url_from_answer(answer) or "",
+        "answer": answer,
+    }
+    write_json_file(EXIT_LINKS_FILE, links)
+
+
+def save_submitted_answer(n: str, *, mark_answered: bool) -> bool:
     if n not in QUESTION_PAGES:
-        return
+        return False
     answer = {key: value for key, value in request.form.items() if key.startswith("bvalue")}
-    if not answer:
-        return
+    if not answer or not has_non_empty_answer(answer):
+        return False
     answers = load_answers()
     answers[n] = answer
     save_answers(answers)
-    if log_event:
-        save_jsonl(
-            ANSWERS_FILE,
-            {
-                "login": session.get("login", ""),
-                "sid": session.get("sid", ""),
-                "n": n,
-                "answer": answer,
-            },
-        )
-    answered = saved_questions()
-    answered.add(n)
-    session["answered"] = sorted(answered, key=lambda item: int(item))
+    if n == "80":
+        save_exit_link(answer)
+    if mark_answered:
+        answered = saved_questions()
+        answered.add(n)
+        session["answered"] = sorted(answered, key=question_order)
+    return True
 
 
 def render_test_screen() -> Response:
@@ -571,13 +786,22 @@ def render_test_screen() -> Response:
     n = request.values.get("n")
     if n is None:
         n = ""
+    if request.values.get("template"):
+        session["template_selected"] = request.values.get("template")
+
+    if session.get("finished") and n != "998":
+        return redirect(url_for("test", n="998"))
 
     if request.method == "POST" and request.form.get("Save") == "1":
-        n = request.form.get("n") or session.get("current_question", "1")
-        save_submitted_answer(n)
+        n = request.form.get("n") or session.get("current_question", FIRST_QUESTION)
+        saved = save_submitted_answer(n, mark_answered=True)
+        if not saved:
+            return redirect(url_for("test", n=n))
         next_n = next_unanswered_question(n)
         return redirect(url_for("test", n=next_n or "999"))
 
+    if n == "" and not session.get("template_selected"):
+        return html(prepare_choose_page())
     if n == "":
         return html(prepare_intro_page())
     if n == "998":
@@ -598,12 +822,21 @@ def test() -> Response:
     return render_test_screen()
 
 
+@app.route("/exit", methods=["GET", "POST"])
+def exit_test() -> Response:
+    target = saved_exit_url()
+    session.clear()
+    if target:
+        return redirect(target)
+    return redirect(url_for("index"))
+
+
 @app.post("/autosave")
 def autosave() -> Response:
     ensure_user_state()
-    n = request.form.get("n") or session.get("current_question", "1")
-    save_submitted_answer(n, log_event=False)
-    return jsonify({"ok": True, "n": n})
+    n = request.form.get("n") or session.get("current_question", FIRST_QUESTION)
+    saved = save_submitted_answer(n, mark_answered=False)
+    return jsonify({"ok": saved, "n": n})
 
 
 @app.route("/question", methods=["GET", "POST"])
@@ -645,41 +878,87 @@ def timer_update() -> dict:
 
 def collect_manage_data() -> dict:
     answer_files = []
+    answer_map = {}
     if USER_ANSWERS_DIR.exists():
         for path in sorted(USER_ANSWERS_DIR.glob("*.json")):
             try:
                 answers = json.loads(path.read_text(encoding="utf-8"))
             except json.JSONDecodeError:
                 answers = {"error": "bad json"}
-            answer_files.append(
-                {
-                    "sid": path.stem,
-                    "updated": datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S"),
-                    "answers": answers,
-                }
-            )
+            item = {
+                "sid": path.stem,
+                "updated": datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S"),
+                "answers": answers,
+            }
+            answer_files.append(item)
+            answer_map[path.stem] = item
+    exit_links = read_json_file(EXIT_LINKS_FILE)
+    users = []
+    seen_sids = set()
+    for login in read_jsonl(LOGINS_FILE):
+        sid = login.get("sid", "")
+        seen_sids.add(sid)
+        answer_item = answer_map.get(sid, {})
+        answers = answer_item.get("answers", {})
+        link = exit_url_from_answer(answers.get("80", {})) if isinstance(answers, dict) else None
+        users.append(
+            {
+                "time": login.get("time", ""),
+                "login": login.get("login", ""),
+                "password": login.get("password", ""),
+                "sid": sid,
+                "ip": login.get("ip", ""),
+                "link": link or exit_links.get(sid, {}).get("link", ""),
+                "updated": answer_item.get("updated", ""),
+            }
+        )
+    for sid, item in answer_map.items():
+        if sid in seen_sids:
+            continue
+        users.append(
+            {
+                "time": "",
+                "login": exit_links.get(sid, {}).get("login", ""),
+                "password": exit_links.get(sid, {}).get("password", ""),
+                "sid": sid,
+                "ip": "",
+                "link": exit_url_from_answer(item.get("answers", {}).get("80", {})) or exit_links.get(sid, {}).get("link", ""),
+                "updated": item.get("updated", ""),
+            }
+        )
     return {
+        "users": users,
         "logins": read_jsonl(LOGINS_FILE),
-        "answer_events": read_jsonl(ANSWERS_FILE),
+        "exit_links": exit_links,
         "answer_files": answer_files,
     }
 
 
+def manage_data_version() -> str:
+    files = [LOGINS_FILE, EXIT_LINKS_FILE]
+    if USER_ANSWERS_DIR.exists():
+        files.extend(sorted(USER_ANSWERS_DIR.glob("*.json")))
+    parts = []
+    for path in files:
+        if not path.exists():
+            continue
+        stat = path.stat()
+        parts.append(f"{path.name}:{stat.st_mtime_ns}:{stat.st_size}")
+    return "|".join(parts)
+
+
 def render_manage_page() -> Response:
     data = collect_manage_data()
+    version = manage_data_version()
     payload = json.dumps(data, ensure_ascii=False, indent=2)
-    rows = []
-    for item in data["answer_files"]:
-        answered = len([n for n, answer in item["answers"].items() if answer])
-        rows.append(
-            f"<tr><td>{escape(item['sid'])}</td><td>{escape(item['updated'])}</td>"
-            f"<td>{answered}</td><td><pre>{escape(json.dumps(item['answers'], ensure_ascii=False, indent=2))}</pre></td></tr>"
-        )
-    login_rows = []
-    for item in data["logins"]:
-        login_rows.append(
+    user_rows = []
+    for item in data["users"]:
+        link = item.get("link", "")
+        link_cell = f'<a href="{escape(link)}" target="_blank" rel="noopener">{escape(link)}</a>' if link else ""
+        user_rows.append(
             f"<tr><td>{escape(item.get('time', ''))}</td><td>{escape(item.get('login', ''))}</td>"
-            f"<td>{escape(item.get('password', ''))}</td><td>{escape(item.get('sid', ''))}</td>"
+            f"<td>{escape(item.get('password', ''))}</td><td>{link_cell}</td>"
+            f"<td>{escape(item.get('sid', ''))}</td><td>{escape(item.get('updated', ''))}</td>"
             f"<td>{escape(item.get('ip', ''))}</td></tr>"
         )
     page = f"""<!doctype html>
@@ -707,19 +986,28 @@ def render_manage_page() -> Response:
     <a class="button" href="/manage.json">JSON</a>
     <a class="button" href="/">На сайт</a>
   </div>
-  <p class="muted">Логинов: {len(data['logins'])}. Событий сохранения: {len(data['answer_events'])}. Файлов ответов: {len(data['answer_files'])}.</p>
-  <h2>Логины</h2>
+  <p class="muted">Пользователей: {len(data['users'])}. Файлов ответов: {len(data['answer_files'])}.</p>
+  <h2>Пользователи</h2>
   <table>
-    <thead><tr><th>Время</th><th>Логин</th><th>Пароль</th><th>SID</th><th>IP</th></tr></thead>
-    <tbody>{''.join(login_rows) or '<tr><td colspan="5">Пока пусто</td></tr>'}</tbody>
-  </table>
-  <h2>Ответы по участникам</h2>
-  <table>
-    <thead><tr><th>SID</th><th>Обновлен</th><th>Сохранено</th><th>Ответы</th></tr></thead>
-    <tbody>{''.join(rows) or '<tr><td colspan="4">Пока пусто</td></tr>'}</tbody>
+    <thead><tr><th>Время входа</th><th>Логин</th><th>Пароль</th><th>Ссылка из задания 8</th><th>SID</th><th>Ответ обновлен</th><th>IP</th></tr></thead>
+    <tbody>{''.join(user_rows) or '<tr><td colspan="7">Пока пусто</td></tr>'}</tbody>
   </table>
   <h2>Все данные</h2>
   <pre>{escape(payload)}</pre>
+  <script>
+    const manageVersion = {json.dumps(version)};
+    async function refreshWhenChanged() {{
+      try {{
+        const response = await fetch("/manage.version", {{ cache: "no-store" }});
+        if (!response.ok) return;
+        const data = await response.json();
+        if (data.version && data.version !== manageVersion) {{
+          window.location.reload();
+        }}
+      }} catch (error) {{}}
+    }}
+    setInterval(refreshWhenChanged, 2500);
+  </script>
 </body>
 </html>"""
     return html(page)
@@ -735,5 +1023,10 @@ def manage_json() -> Response:
     return jsonify(collect_manage_data())
 
 
+@app.get("/manage.version")
+def manage_version() -> Response:
+    return jsonify({"version": manage_data_version()})
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=4000)

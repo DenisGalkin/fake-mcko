@@ -6,25 +6,25 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="2_files/main7.css" type="text/css" rel="stylesheet">
-<link href="2_files/virt_kb.css" type="text/css" rel="stylesheet">
-<link href="2_files/mpu.css" type="text/css" rel="stylesheet">
+<link href="6_files/main7.css" type="text/css" rel="stylesheet">
+<link href="6_files/virt_kb.css" type="text/css" rel="stylesheet">
+<link href="6_files/mpu.css" type="text/css" rel="stylesheet">
 
 
-<link href="2_files/kim.css" type="text/css" rel="stylesheet">
+<link href="6_files/kim.css" type="text/css" rel="stylesheet">
 <!-- <script type="text/javascript" src="js/jQuery.js"></script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
 
 <!-- JQuery -->
-<script type="text/javascript" src="2_files/jquery.min.js"></script>
+<script type="text/javascript" src="6_files/jquery.min.js"></script>
 
 <!-- JQueryUI -->
-<script type="text/javascript" src="2_files/jquery-ui.min.js"></script>
-<script type="text/javascript" src="2_files/jquery.ui.touch-punch.min.js"></script>
-<link href="2_files/jquery-ui.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="6_files/jquery-ui.min.js"></script>
+<script type="text/javascript" src="6_files/jquery.ui.touch-punch.min.js"></script>
+<link href="6_files/jquery-ui.css" type="text/css" rel="stylesheet">
 
 <!-- Virtual keyboard plugin -->
-<script type="text/javascript" src="2_files/virt_kb.js"></script>
+<script type="text/javascript" src="6_files/virt_kb.js"></script>
 
 </head>
 
@@ -37,22 +37,21 @@
 			<td>
 				<span id="ping" style="position: absolute; opacity: 0.2; display: none;">*</span>
 				<p style="margin-left:15px;color:#000000;font-size:12pt;text-indent:0"> Задания: </p>
-			</td><td><p id="topline"><font>Оставшееся время - 44:52</font></p>
+			</td><td><p id="topline"><font>Оставшееся время - 42:44</font></p>
 		</td></tr></tbody></table>
 <form method="post" action="" onsubmit="$(window).off('beforeunload');">
 <button class="qnum" type="submit" name="n" value="">Описание</button>
-<button class="qnum yellow" type="submit" name="n" value="1">1</button>
-<button class="qnum qramka" type="submit" name="n" value="2">2</button>
-<button class="qnum" type="submit" name="n" value="3">3</button>
-<button class="qnum" type="submit" name="n" value="4">4</button>
-<button class="qnum" type="submit" name="n" value="5">5</button>
-<button class="qnum" type="submit" name="n" value="6">6</button>
-<button class="qnum" type="submit" name="n" value="7">7</button>
-<button class="qnum" type="submit" name="n" value="8">8</button>
-<button class="qnum" type="submit" name="n" value="9">9</button>
-<button class="qnum" type="submit" name="n" value="10">10.1</button>
-<button class="qnum" type="submit" name="n" value="11">10.2</button>
-<button class="qnum" type="submit" name="n" value="12">10.3</button>
+<button class="qnum" type="submit" name="n" value="11">1.1</button>
+<button class="qnum" type="submit" name="n" value="12">1.2</button>
+<button class="qnum" type="submit" name="n" value="20">2</button>
+<button class="qnum" type="submit" name="n" value="30">3</button>
+<button class="qnum" type="submit" name="n" value="40">4</button>
+<button class="qnum" type="submit" name="n" value="50">5</button>
+<button class="qnum qramka" type="submit" name="n" value="60">6</button>
+<button class="qnum" type="submit" name="n" value="70">7</button>
+<button class="qnum" type="submit" name="n" value="80">8</button>
+<button class="qnum" type="submit" name="n" value="90">9</button>
+<button class="qnum" type="submit" name="n" value="100">10</button>
 <button class="qnum" type="submit" name="n" value="999">закончить</button>
 </form>
 	</div>
@@ -62,7 +61,7 @@
 
 
 
-<script>MyLogin = 'test_28123';</script>
+<script>MyLogin = 'test_32325';</script>
 
 <div id="content">
 
@@ -70,50 +69,73 @@
 
  <!-- answer -->
 
-<p class="MsoNormal" style="border:1px solid black; text-align:center; margin:0px; padding:0px 3px; line-height:1.5"><b><i>Прочитайте текст 1 и выполните задания 1 и 2.</i></b></p>
-<p class="MsoNormal">&nbsp;</p>
+<style>
+.V input[type="radio"] {
+  display: none;
+}
+.V label {border-bottom:1px dotted #000088; cursor:pointer;}
+.V input:checked + label { border-bottom:1px solid #880000; color:#880000; font-weight:bold; background-color:#ffff88; }
+.V input:disabled + label {  border-bottom:1px dotted #000088; cursor:pointer; }
+</style>
+<style>
+span.ans {  border-bottom:1px dotted #000088; cursor:pointer; }
+span.ans.marked { border-bottom:1px solid #880000; color:#880000; font-weight:bold; background-color:#ffff88; }
+</style>
+<p class="qq">Прочитайте предложения (знаки препинания не расставлены).</p>
+<p class="qq"><b>1.</b> Укажите предложение с&nbsp;<b>обособленным согласованным распространённым определением</b>. </p>
+<p align="justify" style="font-size:14pt;text-indent:0px;margin:0px;padding:0px;color:#886600"><i>Чтобы выбрать предложение, щёлкните левой кнопкой мыши в любом его месте, после чего предложение выделится цветом.</i></p>
 
-<div style="border:2px solid #996633; background:#fff9ed; padding:10px;margin:10px 0px;">
-  <center>Текст 1</center>
 
-<p>(1)В начале 1870 года русские художники поняли наконец прелесть 
-природы средней полосы. (2)Ранее их привлекали экзотические красоты 
-итальянских и крымских ландшафтов. (3)Неброское обаяние пейзажей средней
- полосы могло быть выражено только через эмоциональное состояние творца.
- (4)Если для передачи величия моря и гор художнику порой достаточно 
-сосредоточиться на местности, то здесь значимой стала необходимость 
-выразить субъективное отношение, ибо только так можно было раскрыть 
-внешне неприметную, но полную тихого очарования душу русской природы, 
-углубить её восприятие.</p>
 
-<p class="MsoNormal" align="right" style="text-align:right; line-height:1.5"><i>(По И. Кашековой)</i></p>
-</div><p class="qq"><b>А.</b> <b>Определите</b>, о каком средстве 
-художественной выразительности идёт речь: «Определение, прибавляемое к 
-названию предмета или лица для большей художественной выразительности». </p>
+
+ 
+<p><span class="ans" name="a0" value="1" onclick="fp(1)">(1)Это была интересная выставка открывающая новые горизонты творчества известных художников.</span> 
+	
+	
+<span class="ans" name="a0" value="2" onclick="fp(2)">(2)Пейзажи натюрморты портреты всё нашло в ней своё особое место. </span>
+	
+	
+<span class="ans" name="a0" value="3" onclick="fp(3)">(3)Посетители переполняясь впечатлениями ещё долго восторгались этим удивительным зрелищем и оживлённо обсуждали увиденное.</span></p>
+	
+
+
+
+
+
+
+
+<p class="qq"><b>2.</b> Укажите наиболее полное объяснение постановки знаков препинания.</p>
+<p class="MsoNormal">Запятая(-ые) ставится(-ятся), потому что</p>
 <table>
-  <tbody><tr><td><label for="r1"><div class="answer"><input type="radio" class="ans" name="a0" id="r1" value="1" autocomplete="off" spellcheck="false">&nbsp;гипербола</div></label></td>
-	<td><label for="r2"><div class="answer"><input type="radio" class="ans" name="a0" id="r2" value="2" autocomplete="off" spellcheck="false">&nbsp;эпитет</div></label></td>
-	<td><label for="r3"><div class="answer"><input type="radio" class="ans" name="a0" id="r3" value="3" autocomplete="off" spellcheck="false">&nbsp;олицетворение</div></label></td>
-  <td><label for="r4"><div class="answer"><input type="radio" class="ans" name="a0" id="r4" value="4" autocomplete="off" spellcheck="false">&nbsp;метонимия</div></label></td></tr>
-</tbody></table><br>
-<p class="qq"><b>Б.</b> <b>Выберите</b> два верных примера этого средства выразительности.</p>
-<table>
-    <tbody><tr><td><label for="1r1"><div class="answer"><input type="checkbox" class="ans" name="m1" id="1r1" value="1" autocomplete="off" spellcheck="false">&nbsp;«русские художники» (предложение 1) </div></label></td></tr>
-	<tr><td><label for="1r2"><div class="answer"><input type="checkbox" class="ans" name="m1" id="1r2" value="2" autocomplete="off" spellcheck="false">&nbsp;«крымские ландшафты» (предложение 2)</div></label></td></tr>
-	<tr><td><label for="1r3"><div class="answer"><input type="checkbox" class="ans" name="m1" id="1r3" value="3" autocomplete="off" spellcheck="false">&nbsp;«неброское обаяние» (предложение 3)</div></label></td></tr>
-    <tr><td><label for="1r4"><div class="answer"><input type="checkbox" class="ans" name="m1" id="1r4" value="4" autocomplete="off" spellcheck="false">&nbsp;«тихое очарование» (предложение 4)</div></label></td></tr>
-  <tr><td><label for="1r5"><div class="answer"><input type="checkbox" class="ans" name="m1" id="1r5" value="5" autocomplete="off" spellcheck="false">&nbsp;«величие моря» (предложение 4)</div></label></td></tr>
-</tbody></table><br>
+<tbody><tr><td><label for="f1"><div class="answer"><input type="radio" class="ans" name="a2" id="f1" value="1" autocomplete="off" spellcheck="false">&nbsp;есть причастие <nobr>с&nbsp;зависимым(-ми)</nobr> <nobr>словом(-ами),</nobr> стоящее перед определяемым словом (глаголом) и&nbsp;открывающее предложение</div></label></td></tr>
+<tr><td><label for="f2"><div class="answer"><input type="radio" class="ans" name="a2" id="f2" value="2" autocomplete="off" spellcheck="false">&nbsp;есть причастие <nobr>с&nbsp;зависимым(-ми)</nobr> <nobr>словом(-ами),</nobr> стоящее после определяемого слова (имени существительного) и&nbsp;завершающее предложение</div></label></td></tr>
+<tr><td><label for="f3"><div class="answer"><input type="radio" class="ans" name="a2" id="f3" value="3" autocomplete="off" spellcheck="false">&nbsp;есть однородные члены предложения, которые не&nbsp;соединены союзами, и&nbsp;стоящее после них обобщающее слово</div></label></td></tr>
+<tr><td><label for="f4"><div class="answer"><input type="radio" class="ans" name="a2" id="f4" value="4" autocomplete="off" spellcheck="false">&nbsp;есть причастие <nobr>с&nbsp;зависимым(-ми)</nobr> <nobr>словом(-ами),</nobr> стоящее после имени существительного в&nbsp;конце предложения</div></label></td></tr>
+<tr><td><label for="f5"><div class="answer"><input type="radio" class="ans" name="a2" id="f5" value="5" autocomplete="off" spellcheck="false">&nbsp;есть деепричастие <nobr>с&nbsp;зависимым(-ми)</nobr> <nobr>словом(-ами),</nobr> стоящее перед определяемым словом в&nbsp;середине предложения</div></label></td></tr>
+<tr><td><label for="f6"><div class="answer"><input type="radio" class="ans" name="a2" id="f6" value="6" autocomplete="off" spellcheck="false">&nbsp;есть однородные члены предложения, которые не соединены союзами и&nbsp;стоят в&nbsp;начале предложения</div></label></td></tr>
+<tr><td><label for="f7"><div class="answer"><input type="radio" class="ans" name="a2" id="f7" value="7" autocomplete="off" spellcheck="false">&nbsp;есть деепричастие <nobr>с&nbsp;зависимым(-ми)</nobr> <nobr>словом(-ами),</nobr> стоящее перед определяемым словом (глаголом) в&nbsp;середине предложения</div></label></td></tr>
 
+</tbody></table>
+<script>
+
+$('#f1,#f2,#f3,#f4,#f5,#f6,#f7,#f8,#f9').change(function() {
+$('#bvalue1').val( $('#bvalue0').val() + '/' + $('#bvalue2').val() );
+});
+
+function fp(num) {
+  $('#bvalue1').val( num + '/' + $('#bvalue2').val() );
+}
+</script>
 
 </div> <!-- QuestionTest -->
 
 <div class="answer" id="b" style="display:none;width:990px;">
 <form method="post" name="AnswerForm" id="AnswerForm" action="">
-<input type="hidden" name="n" value="2" autocomplete="off" spellcheck="false">
+<input type="hidden" name="n" value="60" autocomplete="off" spellcheck="false">
 <input type="hidden" name="Save" value="1" autocomplete="off" spellcheck="false">
 <br>Ответ-0:<br><textarea name="bvalue0" id="bvalue0" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
-<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false">-</textarea>
+<br>Ответ-1:<br><textarea name="bvalue1" id="bvalue1" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
+<br>Ответ-2:<br><textarea name="bvalue2" id="bvalue2" rows="10" cols="120" style="font-size:12pt;padding:2px" spellcheck="false"></textarea>
 <br><button type="submit" style="padding:5px;width:300px;margin-top:20px" onclick="$(window).off('beforeunload');">Сохранить ответ на задание</button>
 </form>
 </div><div id="AnswerHere"><button onclick="SetAnswerB()" style="margin-top:15px">Сохранить ответ</button></div>
@@ -252,9 +274,9 @@ function UpdateRelaxTimer() {
 var timer2 = window.setInterval( UpdateTimer2, 500);
 var UpTimer = window.setInterval( up, CurrentUpInterval);
 up();
-</script><script type="text/javascript" src="2_files/basic_am7.js"></script>
+</script><script type="text/javascript" src="6_files/basic_am7.js"></script>
 
-<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.008, memory usage: 485 kb</font></center>
+<br><center><font style="color:#cccccc;font-size:8pt">Page generated in 0.004, memory usage: 493 kb</font></center>
 <script>
 function SetAnswerB() { window.onbeforeunload = null; document.forms["AnswerForm"].submit(); }
 
